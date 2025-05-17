@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title></title>
+  <meta name="theme-color" content="#1c86ee">
+  <!-- Font & Icons -->
+      <link rel="stylesheet" href="index2.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Roboto+Slab:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+  @font-face {
+  font-family: 'calibri';
+  src: url('calibri.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+  </style>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: "transparent",      // latar belakang utama
+            card: "#fefeff",      // latar kartu
+            accent: "#8b5cf6"     // ungu untuk judul & elemen penting
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+  ::selection {
+  background: brown;
+  color: #fff;
+}
+  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body class="min-h-screen p-2 bg-dark text-gray-200" translate="no">
+<div class="fixed top-2 right-3 z-50">
+  <button onclick="location.reload()" class="text-gray-500 p-0 transition" style="border-radius: 50%; background: transparent;">
+    <i class="fas fa-rotate-right"></i>
+  </button>
+</div>
+
+   <div class="grid gap-6">
+      
+<div class="grid gap-3" id="data-container">
+  <!-- Komentar akan dimasukkan via JavaScript -->
+</div>
+     <div class="overlay" id="customOverlay">  
+    <div class="alert-box" id="alertBox">  
+      <h3>Warning!</h3>  <p style="line-height: 1.2; font-weight: 600; font-size: 15px;">Komentar dengan tanda ini mungkin mengandung unsur negatif, mohon berhati hati.</p>  
+      <div class="scale-in" >  
+    <span id="errorMsg" style="display:none;" class="alert-icon scale-in">Incorrect Password!</span>  
+  </div>  
+  <div class="alert-actions">  
+    <button onclick="closePrompt()" id="myButton" style="height: 30px;">Ok</button>  
+
+  </div>  
+  </div>
+
+<script src="data-aos.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>

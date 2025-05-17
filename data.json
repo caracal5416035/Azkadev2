@@ -1,0 +1,163 @@
+{
+  "html": "<header id="main">
+  <div class="site-title" aria-label="Site title">AzkaDev</div>
+<button class="menu-button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" id="menu-btn">
+  <i class="fas fa-bars" id="menu-icon" style="font-size: 24px; color: #fff;"></i>
+</button>
+</header>
+
+<!-- Side Nav Backdrop -->
+<div id="side-nav-backdrop" class="side-nav-backdrop" tabindex="-1"></div>
+<!-- Side Nav Panel -->
+<nav id="side-menu" class="side-menu" role="navigation" aria-label="Primary navigation" aria-expanded="false">
+   <img src="https://azkaarrodhi.vercel.app/static/044d12b83f0f1aa1012563a4701b0531.gif" style="border-bottom: 3px solid rgba(100,100,100,0.4); margin-bottom: 0px; margin-top: -40px;" class="hidden">
+    
+  <a href="#main" tabindex="-1" style=""><span class="hidden">Home</span></a>
+    
+  <a href="#about" tabindex="-1"><span class="hidden">About</span></a>
+    
+  <a href="#skills" tabindex="-1"><span class="hidden">Skills</span></a>
+    
+  <a href="#projects" tabindex="-1"><span class="hidden">Projects</span></a>
+    
+  <a href="#contact" tabindex="-1"><span class="hidden">Contact</span></a>
+    
+    <a tabindex="-1" style="pointer-events: none;"></a>
+</nav>
+
+<section id="hero" tabindex="-1" aria-label="Introduction" class="fade-in-top">
+  <div class="photo" tabindex="0" aria-label="Portrait photo of Your Name">
+    <img src="https://azkaarrodhi.vercel.app/static/profile1.webp" alt="Portrait photo of Your Name" />
+  </div>
+  <div class="intro">
+    <h1 id="typing"></h1>
+    <p>Terima kasih sudah mampir. Di sini tempat saya nyimpen hasil eksperimen digital, dan nyoba ide yang kadang ga masuk akal tapi seru dicoba.</p>
+    <a href="#contact" class="btn-primary" role="button" aria-label="Contact Me">Contact Me</a>
+  </div>
+</section>
+
+<section id="about" tabindex="-1" aria-label="About me">
+  <h2>About Me</h2>
+  <p>I am a passionate developer with years of experience building websites and web applications. I specialize in frontend and fullstack development with a strong focus on responsive design and user experience. I strive to deliver high-quality code that delights users and solves practical problems.</p>
+</section>
+
+<section id="skills" tabindex="-1" aria-label="Skills">
+  <h2>Skills</h2>
+ <div class="skill-list grid grid-cols-3 gap-6">
+  <div class="skill text-center" role="listitem" aria-label="HTML5" tabindex="0">
+    <i class="fab fa-html5 fa-3x text-orange-600"></i>
+    <div class="text-sm mt-2">87%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="CSS3" tabindex="0">
+    <i class="fab fa-css3-alt fa-3x text-blue-600"></i>
+    <div class="text-sm mt-2">71%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="JavaScript" tabindex="0">
+    <i class="fab fa-js fa-3x text-yellow-400"></i>
+    <div class="text-sm mt-2">34%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="React" tabindex="0">
+    <i class="fab fa-node fa-3x text-cyan-400"></i>
+    <div class="text-sm mt-2">5%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="Node.js" tabindex="0">
+    <i class="fas fa-database fa-3x text-green-600"></i>
+    <div class="text-sm mt-2">10%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="Responsive Design" tabindex="0">
+    <i class="fab fa-python fa-3x text-purple-500"></i>
+    <div class="text-sm mt-2">12%</div>
+  </div>
+  <div class="skill text-center" role="listitem" aria-label="Git" tabindex="0">
+    <i class="fab fa-git-alt fa-3x text-red-500"></i>
+    <div class="text-sm mt-2">36%</div>
+  </div>
+   <div class="skill text-center" role="listitem" aria-label="Git" tabindex="0">
+    <i class="fab fa-php fa-3x text-red-500"></i>
+    <div class="text-sm mt-2">26%</div>
+  </div>
+</div>
+</section>
+
+<section id="projects" tabindex="-1" aria-label="Projects">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+    <div href="https://github.com/yourusername/project1" target="_blank" rel="noopener" class="project-card" aria-label="Link to Project One" tabindex="0">
+      <img src="https://azkaarrodhi.vercel.app/static/scratch.jpg" alt="Screenshot of Project One" />
+      <div class="project-content">
+        <div class="project-title">Space Shooter</div>
+        <div class="project-desc">Ini adalah project scratch sederhana yang saya buat pada satu tahun yang lalu.</div>
+        <div class="project-link"><a href="https://scratch.mit.edu/projects/1026940287">Jelajahi project ini &rarr;</a></div>
+      </div>
+    </div>
+    <div href="https://easyquiz.vercel.app" target="_blank" rel="noopener" class="project-card" aria-label="Link to Project Two" tabindex="0">
+      <img src="https://azkaarrodhi.vercel.app/static/Screenshot_20250511-231727.jpg" alt="Screenshot of Project Two" />
+      <div class="project-content">
+        <div class="project-title">GForm Quiz</div>
+        <div class="project-desc">terbuat dari google form yang dimodifikasi menjadi sedikit lebih aman.</div>
+        <div class="project-link"><a href="https://easyquiz.vercel.app">Jelajahi project ini &rarr;</a></div>
+      </div>
+    </div>
+    <div href="https://yourwebsite.com/project3" target="_blank" rel="noopener" class="project-card" aria-label="Link to Project Three" tabindex="0">
+      <img src="https://azkaarrodhi.vercel.app/static/ck.jpg" alt="Screenshot of Project Three" />
+      <div class="project-content">
+        <div class="project-title">Cek Khodam</div>
+        <div class="project-desc">Website yang pernah saya buat karena terinspirasi dari TikTok.</div>
+        <div class="project-link"><a href="https://azkaarrodhi.vercel.app/cek-khodam">Jelajahi project ini  &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="reviews" tabindex="-1" aria-label="Ulasan">
+  <h2>Comments</h2>
+  <h3></h3>
+  <iframe src="comment.html" class="fr"></iframe>
+  </div>
+<form id="review-form" aria-label="Form Ulasan" style="margin-top: 20px;" enctype="multipart/form-data">
+  <input type="text" id="nama" placeholder="Nama Kamu......" name="nama" required aria-required="true" />
+  <p id="warning" class="hidden" style="color: red; font-weight: 600; font-family: 'arial', sans-serif; font-size: 13px; margin-left: 2px; margin-top: -5px;">Max 15 karakter</p>
+  <textarea id="b" name="pesan" placeholder="Komentar......" rows="2" required aria-required="true"></textarea>
+  <button class="smt" type="submit" id="myButton" aria-label="Kirim Ulasan">Upload</button>
+    
+</form>
+  
+  <div id="review-box" class="review-box" aria-label="Ulasan yang Dikirim">
+    
+</section>
+
+<section id="contact" tabindex="-1" aria-label="Contact me">
+  <h2>Contact Me</h2>
+  <form id="contact-form" aria-label="Contact form">
+    <label for="name">Nama</label>
+    <input type="text" id="name" name="name" required aria-required="true" aria-describedby="name-error" />
+    <span id="name-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter your name.</span>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-error" />
+    <span id="email-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter a valid email address.</span>
+
+    <label for="message">Pesan</label>
+    <textarea id="message" name="message" rows="4" required aria-required="true" aria-describedby="message-error"></textarea>
+    <span id="message-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter a message.</span>
+
+    <button type="submit" aria-label="Send message">Kirim</button>
+    <p id="form-status" role="alert" style="margin-top:1rem; font-weight:600; color:#1976d2; display:none;"></p>
+  </form>
+  <div class="social" aria-label="Social media links">
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="GitHub" tabindex="0"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.41 2.87 8.16 6.84 9.5.5.09.68-.22.68-.5v-1.69c-2.78.64-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.63.07-.63 1 .07 1.54 1.03 1.54 1.03.89 1.52 2.34 1.08 2.9.83.09-.65.34-1.08.62-1.33-2.22-.25-4.55-1.11-4.55-4.93 0-1.09.39-1.98 1.03-2.67-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.49 9.49 0 0112 6.8a9.48 9.48 0 012.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.69 1.03 1.58 1.03 2.67 0 3.83-2.34 4.69-4.57 4.93.35.3.66.89.66 1.79v2.65c0 .28.18.6.69.5A10.002 10.002 0 0022 12c0-5.52-4.48-10-10-10z"/></svg></a>
+    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener" aria-label="Twitter" tabindex="0"><svg width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.31 4.31 0 001.9-2.38 8.41 8.41 0 01-2.72 1.04 4.19 4.19 0 00-7.15 2.91c0 .33.04.65.11.95-3.48-.17-6.56-1.83-8.62-4.35a4.3 4.3 0 00-.57 2.11 4.15 4.15 0 001.86 3.43 4.17 4.17 0 01-1.9-.52v.06a4.2 4.2 0 003.36 4.11 4.19 4.19 0 01-1.89.07 4.2 4.2 0 003.92 2.91 8.4 8.4 0 01-5.21 1.8c-.34 0-.67-.02-1-.06a11.86 11.86 0 006.48 1.9c7.78 0 12.04-6.44 12.04-12.03 0-.18 0-.35-.01-.53A8.46 8.46 0 0024 5.11a8.3 8.3 0 01-2.4.66z"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2024 Azka Arrodhi. All rights reserved.
+</footer>
+<script type="module" src="module.js"></script>
+<script src="config.js"></script>
+    
+     <script type="module" src="initializeapp.js">
+    
+  </script>
+  "  
+}
