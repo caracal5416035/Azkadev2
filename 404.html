@@ -1,38 +1,283 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Error 404</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-    * { -webkit-tap-highlight-color: transparent; user-select: none; margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; font-family: 'Inter', sans-serif; background: #fff; color: #212529; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; }
-    .error-wrapper { max-width: 100%; user-select: none; }
-    .error-code { font-size: 1.8rem; font-weight: 700; color: #dc3545; line-height: 1; }
-    .error-message { font-size: 1.8rem; font-weight: 600; margin-top: 0.4em; margin-bottom: 0.8em; color: #495057; }
-    .error-description { font-size: 1rem; color: #6c757d; margin-bottom: 1.5em; }
-    button.go-back { font-size: 1rem; background-color: #dc3545; color: #fff; border: none; padding: 0.75em 2em; border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease; }
-    button.go-back:hover, button.go-back:focus { background-color: #b02a37; outline: none; }
-    @media(max-width:350px){.error-code{font-size:1.5rem}.error-message{font-size:1.5rem}}
-  </style>
-</head>
-<body>
-  <main role="main" class="error-wrapper">
-    <img src="error.png" alt="Error Image" style="max-width: 80%; height: auto;" />
-    <div class="error-code" id="error-code">404</div>
-    <div class="error-message" id="error-message">Halaman tidak ditemukan.</div>
-    <button class="go-back" onclick="goBack()">Kembali</button>
-  </main>
 
-  <script>
-    function goBack() {
-      if (document.referrer) {
-        window.history.back();
-      } else {
-        window.location.href = '/';
-      }
+<head>
+  <meta name="theme-color" content="#232323">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 Not Found</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f17;
+    color: #eee;
+    overflow: hidden;
+  }
+
+  /* Subtle slow gradient background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(270deg, #ff3c78, #8250ff, #3adced, #ff3c78);
+    background-size: 800% 800%;
+    animation: gradientShift 60s linear infinite;
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: -2;
+    border-radius: 50%;
+    will-change: background-position;
+  }
+
+  @keyframes gradientShift {
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+
+    /* Align content top and horizontally center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 20px 20px 20px;
+  }
+
+  /* Glitch effect using opacity and translateX only */
+  .error-code {
+    font-size: 12rem;
+    font-weight: 900;
+    color: #ff3c78;
+    position: relative;
+    letter-spacing: 0.15em;
+    user-select: none;
+    will-change: transform, opacity;
+    animation: glitchBase 3s linear infinite;
+    line-height: 1;
+  }
+  .error-code::before,
+  .error-code::after {
+    content: "404";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    color: inherit;
+    user-select: none;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .error-code::before {
+    color: #3adced;
+    z-index: -1;
+    animation: glitchBlue 3s linear infinite;
+  }
+  .error-code::after {
+    color: #ffa1c7;
+    z-index: -1;
+    animation: glitchPink 3s linear infinite;
+  }
+
+  @keyframes glitchBase {
+    0%, 100% { transform: translate3d(0,0,0); opacity: 1; }
+    20%, 60% { transform: translate3d(-2px, 1px, 0); opacity: 0.9;}
+    40%, 80% { transform: translate3d(2px, -1px, 0); opacity: 0.9;}
+  }
+  @keyframes glitchBlue {
+    0%, 100% { transform: translate3d(0,0,0); opacity: 0.7; }
+    25%, 75% { transform: translate3d(-3px, -2px, 0); opacity: 0.4; }
+    50% { transform: translate3d(3px, 2px, 0); opacity: 0.4; }
+  }
+  @keyframes glitchPink {
+    0%, 100% { transform: translate3d(0,0,0); opacity: 0.7; }
+    25%, 75% { transform: translate3d(3px, 2px, 0); opacity: 0.4; }
+    50% { transform: translate3d(-3px, -2px, 0); opacity: 0.4; }
+  }
+
+  .error-message {
+    font-size: 1.6rem;
+    margin: 0.5rem 0 2rem 0;
+    color: #ddd;
+    max-width: 350px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 1.5s;
+    will-change: opacity;
+  }
+  .error-submessage {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    color: #aaa;
+    max-width: 300px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 1.7s;
+    will-change: opacity;
+  }
+
+  @keyframes fadeIn {
+    to {opacity: 1;}
+  }
+
+  /* Button with icon */
+  .home-button {
+    background: #ff3c78;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px #ff3c78aa;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 2s;
+    user-select: none;
+  }
+  .home-button:hover,
+  .home-button:focus {
+    background: #ff1f57;
+    box-shadow: 0 6px 20px #ff1f5788;
+    outline: none;
+    transform: scale(1.05);
+  }
+  .home-button svg {
+    fill: white;
+    width: 18px;
+    height: 18px;
+    margin-left: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+  .home-button:hover svg,
+  .home-button:focus svg {
+    transform: translateX(5px);
+  }
+
+  /* Floating dots for depth */
+  .dots-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: -1;
+  }
+  .dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff3c78;
+    border-radius: 50%;
+    opacity: 0.12;
+    animation: floatUpDown ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .dot:nth-child(1) {
+    left: 15%;
+    top: 80%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+  }
+  .dot:nth-child(2) {
+    left: 30%;
+    top: 50%;
+    animation-duration: 15s;
+    animation-delay: 2s;
+    width: 14px;
+    height: 14px;
+    opacity: 0.18;
+  }
+  .dot:nth-child(3) {
+    left: 55%;
+    top: 85%;
+    animation-duration: 14s;
+    animation-delay: 1s;
+  }
+  .dot:nth-child(4) {
+    left: 70%;
+    top: 60%;
+    animation-duration: 11s;
+    animation-delay: 0.5s;
+    width: 8px;
+    height: 8px;
+  }
+  .dot:nth-child(5) {
+    left: 85%;
+    top: 75%;
+    animation-duration: 16s;
+    animation-delay: 3s;
+  }
+  @keyframes floatUpDown {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.12;
     }
-  </script>
+    50% {
+      transform: translateY(-10px);
+      opacity: 0.3;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .error-code {
+      font-size: 7rem;
+      letter-spacing: 0.1em;
+    }
+    .error-message {
+      font-size: 1.3rem;
+      max-width: 100%;
+    }
+    .error-submessage {
+      max-width: 100%;
+    }
+    .home-button {
+      font-size: 1rem;
+      padding: 0.8rem 2rem;
+    }
+  }
+</style>
+</head>
+<body translate="no">
+  <div class="container" role="main" aria-labelledby="error-title" aria-describedby="error-desc">
+    <h1 class="error-code" id="error-title" aria-label="404 Not Found">404</h1>
+    <p class="error-message" id="error-desc">Oops! The page you are looking for cannot be found.</p>
+    <p class="error-submessage">It might have been removed or you typed the URL incorrectly.</p>
+    <a href="/" class="home-button" aria-label="Go to homepage">
+      Go to Homepage
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M13 5l7 7-7 7M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </a>
+  </div>
+  <div class="dots-container" aria-hidden="true">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
 </body>
 </html>
+
