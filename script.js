@@ -55,7 +55,7 @@ function escapeHTML(str) {
       container.innerHTML = "";
       if (snapshot.empty) {
         container.innerHTML = `<div class="text-center p-6 bg-gray-800 rounded-xl">
-    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Data" class="w-20 mx-auto mb-4 opacity-60" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
     <h1 class="text-xl font-semibold text-gray-100 mb-2" style="text-align: center;">Belum Ada komentar</h1>
     <p class="text-gray-400 mb-4">Saat ini belum ada komentar yang diunggah. Silakan posting komentar pertama.</p>
   </div>`;
