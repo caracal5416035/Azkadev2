@@ -68,9 +68,9 @@
           lokasi,
           timestamp: new Date()
         });
-        alert("Terima kasih, senang berkenalan denganmu!");
+        alert("Terima kasih, senang berkenalan denganmu! 😊");
       } catch (e) {
         console.error("Gagal mengirim:", e);
-        alert("Gagal menyimpan data.");
+        alert("Gagal mengirim data.");
       }
     });
