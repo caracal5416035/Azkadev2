@@ -1,322 +1,95 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" >
 <head>
-<!-- Charset -->
-<meta charset="UTF-8" />
-
-<!-- Viewport for responsive design -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel</title>
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
-  authDomain: "website-61783.firebaseapp.com",
-  projectId: "website-61783",
-  storageBucket: "website-61783.appspot.com",
-  messagingSenderId: "437361977695",
-  appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
-  measurementId: "G-0X5NV4YK2V"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
-
-async function checkIsAdmin(email) {
-  const adminRef = doc(db, "admins", email);
-  const adminSnap = await getDoc(adminRef);
-  return adminSnap.exists();
-}
-
-function groupByKey(data, keys) {
-  const map = new Map();
-  for (const d of data) {
-    const key = keys.map(k => d[k]).join("||");
-    if (!map.has(key)) {
-      map.set(key, { ...d, jumlah: 1, ids: [d.id] });
-    } else {
-      const existing = map.get(key);
-      existing.jumlah += 1;
-      existing.ids.push(d.id);
-    }
-  }
-  return Array.from(map.values());
-}
-
-async function loadData() {
-  const snapshot = await getDocs(collection(db, "pengunjung"));
-  const allData = [];
-  snapshot.forEach(docSnap => {
-    const data = docSnap.data();
-    allData.push({ ...data, id: docSnap.id });
-  });
-
-  const grouped = groupByKey(allData, ["model", "os", "ip"]);
-  document.getElementById("pengunjung-count").innerHTML = `<button class="btn-total-all">Total: ${grouped.length}</button>`;
-  const tbody = document.getElementById("data-body");
-  tbody.innerHTML = "";
-
-  grouped.forEach(item => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td contenteditable="true" class="editable" data-field="model">${item.model}</td>
-      <td contenteditable="true" class="editable" data-field="os">${item.os}</td>
-      <td>${item.ip}</td>
-      <td>${item.negara} (${item.kode_negara})</td>
-      <td>${item.kota}</td>
-      <td>${item.isp}</td>
-      <td contenteditable="true" class="editable" data-field="browser">${item.browser}</td>
-      <td>${item.layar} (Ratio: ${item.pixelRatio})</td>
-      <td>${item.bahasa}</td>
-      <td>${item.waktu}</td>
-      <td><b>${item.jumlah}</b>x</td>
-      <td>
-        <button class="btn-update" data-ids='${JSON.stringify(item.ids)}'>Update</button>
-        <button class="btn-delete" data-ids='${JSON.stringify(item.ids)}'>Delete</button>
-      </td>
-    `;
-    tbody.appendChild(row);
-  });
-
-  document.querySelectorAll(".btn-delete").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const ids = JSON.parse(btn.getAttribute("data-ids"));
-      for (const id of ids) {
-        await deleteDoc(doc(db, "pengunjung", id));
-      }
-      loadData();
-    });
-  });
-document.getElementById("btn-logout").addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "login.html";
-});
-  document.querySelectorAll(".btn-update").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const ids = JSON.parse(btn.getAttribute("data-ids"));
-      const tr = btn.closest("tr");
-      const updatedData = {};
-      tr.querySelectorAll(".editable").forEach(td => {
-        const field = td.getAttribute("data-field");
-        updatedData[field] = td.textContent.trim();
-      });
-      for (const id of ids) {
-        await updateDoc(doc(db, "pengunjung", id), updatedData);
-      }
-      alert("Data berhasil diperbarui.");
-    });
-  });
-}
-
-async function deleteAllData() {
-  if (!confirm("Yakin ingin menghapus semua data pengunjung?")) return;
-  const snapshot = await getDocs(collection(db, "pengunjung"));
-  for (const docSnap of snapshot.docs) {
-    await deleteDoc(doc(db, "pengunjung", docSnap.id));
-  }
-  loadData();
-}
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    
-    window.location.href = "login.html";
-    return;
-  }
-  const isAdmin = await checkIsAdmin(user.email);
-  if (!isAdmin) {
-    alert("Akses ditolak: Anda bukan admin.");
-    await signOut(auth);
-    window.location.href = "login.html";
-    return;
-  }
-  // Jika admin, muat data dan set interval update
-  loadData();
-  setInterval(loadData, 1000);
-});
-
-window.onload = () => {
-  document.getElementById("btn-delete-all").addEventListener("click", deleteAllData);
-  // Jangan panggil loadData di sini karena sudah dipanggil di onAuthStateChanged
-};
-  </script>
-
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f7fa;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    .header-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-
-    .btn-delete-all {
-      background: #dc3545;
-      color: white;
-      padding: 6px 12px;
-        font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-      .btn-total-all {
-      background: purple;
-      color: white;
-        font-weight: bold;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-
-    thead {
-      background-color: #007bff;
-      color: white;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #dee2e6;
-      font-size: 14px;
-      text-align: left;
-    }
-
-    tbody tr:hover {
-      background: #f1f1f1;
-    }
-
-    button {
-      margin: 2px;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .btn-update {
-      background: #007bff;
-      color: white;
-    }
-
-    .btn-delete {
-      background: #dc3545;
-      color: white;
-    }
-
-    td.editable {
-      background: #fff8e1;
-      cursor: text;
-    }
-  .btn-logout {
-  background: #6c757d;
-  color: white;
-  padding: 6px 12px;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
-}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="header-controls" style="display: flex; align-items: center; gap: 10px;">
-  <span id="pengunjung-count"></span>
-
-  <div style="position: relative; display: inline-block;">
-    <button onclick="toggleDropdown()" 
-        style="padding:10px 15px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; font-size:14px;">
-        Pilih Halaman
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+    <h2 class="text-2xl font-bold mb-6 text-center">Login Admin</h2>
+    <input
+      id="email"
+      type="email"
+      placeholder="Email"
+      class="w-full px-4 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      class="w-full px-4 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button
+      id="login-btn"
+      class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+    >
+      Login
     </button>
-
-    <div id="dropdown" 
-        style="display:none; position:absolute; top:100%; left:0; background:#fff; border:1px solid #ccc; box-shadow:0 4px 8px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px; width:160px; z-index:1000;">
-      <a href="../../admin" 
-         style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
-         onclick="closeDropdown()">Pengunjung</a>
-      <a href="contact.html" 
-         style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
-         onclick="closeDropdown()">Pesan Kontak</a>
-      <a href="komentar.html" 
-         style="display:block; padding:10px; color:#333; border-bottom:1px solid #eee; text-decoration:none;"
-         onclick="closeDropdown()">Komentar</a>
-      <a id="btn-logout"
-         style="display:block; padding:10px; color:#333; text-decoration:none;"
-         onclick="closeDropdown()">LogOut</a>
-    </div>
+    <p id="error-message" class="text-red-600 text-sm mt-4 text-center hidden"></p>
   </div>
 
-  <button id="btn-delete-all" class="btn-delete-all"
-      style="padding:10px 15px; background-color:#f44336; color:white; border:none; border-radius:5px; cursor:pointer; font-size:14px;">
-      Hapus Semua
-  </button>
-</div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-<script>
-function toggleDropdown() {
-  const dropdown = document.getElementById('dropdown');
-  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-}
+    // Konfigurasi Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
+      authDomain: "website-61783.firebaseapp.com",
+      projectId: "website-61783",
+      storageBucket: "website-61783.appspot.com",
+      messagingSenderId: "437361977695",
+      appId: "1:437361977695:web:7e1069062bfaca0f02aeea"
+    };
 
-function closeDropdown() {
-  document.getElementById('dropdown').style.display = 'none';
-}
-</script>
-  <div style="overflow-x:auto;">
-    <table>
-      <thead>
-        <tr>
-          <th>Model</th>
-          <th>OS</th>
-          <th>IP</th>
-          <th>Negara</th>
-          <th>Kota</th>
-          <th>ISP</th>
-          <th>Browser</th>
-          <th>Layar</th>
-          <th>Bahasa</th>
-          <th>Waktu</th>
-          <th>Jumlah</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody id="data-body"></tbody>
-    </table>
-  </div>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const loginBtn = document.getElementById("login-btn");
+    const errorMsg = document.getElementById("error-message");
+
+    // Fungsi cek admin di Firestore
+    async function checkIsAdmin(email) {
+      const docRef = doc(db, "admins", email);
+      const docSnap = await getDoc(docRef);
+      return docSnap.exists();
+    }
+
+    loginBtn.addEventListener("click", async () => {
+      errorMsg.classList.add("hidden");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        showError("Email dan password harus diisi.");
+        return;
+      }
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Cek admin
+        const isAdmin = await checkIsAdmin(user.email);
+        if (isAdmin) {
+          window.location.href = "/admin"; // redirect ke halaman admin
+        } else {
+          showError("Akses ditolak: Anda bukan admin.");
+          await auth.signOut();
+        }
+      } catch (error) {
+        
+      }
+    });
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
