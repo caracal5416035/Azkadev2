@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Data Uploads</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      deleteDoc,
+      doc,
+      getDoc,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
+      authDomain: "website-61783.firebaseapp.com",
+      projectId: "website-61783",
+      storageBucket: "website-61783.appspot.com",
+      messagingSenderId: "437361977695",
+      appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
+      measurementId: "G-0X5NV4YK2V"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    async function loadUploads() {
+      const snapshot = await getDocs(collection(db, "uploads"));
+      const tbody = document.getElementById("data-body");
+      tbody.innerHTML = "";
+
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        const id = docSnap.id;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td contenteditable="true" class="editable" data-field="nama">${data.nama || "-"}</td>
+          <td contenteditable="true" class="editable" data-field="pesan">${data.pesan || "-"}</td>
+          <td>${data.waktu || "-"}</td>
+          <td>${data.perangkat ? JSON.stringify(data.perangkat) : "-"}</td>
+          <td>${data.lokasi ? data.lokasi.negara : "-"}</td>
+          <td>
+            <button class="btn-save" data-id="${id}">Simpan</button>
+            <button class="btn-delete" data-id="${id}">Hapus</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-id");
+          if (confirm("Yakin ingin menghapus data ini?")) {
+            await deleteDoc(doc(db, "uploads", id));
+            loadUploads();
+          }
+        });
+      });
+
+      document.querySelectorAll(".btn-save").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-id");
+          const row = btn.closest("tr");
+          const nama = row.querySelector('[data-field="nama"]').innerText.trim();
+          const pesan = row.querySelector('[data-field="pesan"]').innerText.trim();
+          try {
+            await updateDoc(doc(db, "uploads", id), {
+              nama,
+              pesan
+            });
+            alert("Berhasil diperbarui!");
+          } catch (e) {
+            console.error(e);
+            alert("Gagal memperbarui data.");
+          }
+        });
+      });
+    }
+
+    // Auth dan Admin Check
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        alert("Silakan login terlebih dahulu.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const adminRef = doc(db, "admins", user.email);
+      const adminSnap = await getDoc(adminRef);
+
+      if (!adminSnap.exists()) {
+        alert("Akses ditolak: Anda bukan admin.");
+        await signOut(auth);
+        window.location.href = "login.html";
+        return;
+      }
+
+      loadUploads();
+    });
+
+    // Tombol Hapus Semua
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("btn-delete-all").addEventListener("click", async () => {
+        if (!confirm("Yakin ingin menghapus SEMUA data uploads?")) return;
+        const snapshot = await getDocs(collection(db, "uploads"));
+        for (const docSnap of snapshot.docs) {
+          await deleteDoc(doc(db, "uploads", docSnap.id));
+        }
+        alert("Semua data berhasil dihapus.");
+        loadUploads();
+      });
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .header-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .btn-delete-all {
+      background: #dc3545;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    thead {
+      background-color: #007bff;
+      color: white;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #dee2e6;
+      font-size: 14px;
+      text-align: left;
+    }
+    tbody tr:hover {
+      background: #f1f1f1;
+    }
+    .btn-delete {
+      background: #dc3545;
+      color: white;
+      padding: 5px 10px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-save {
+      background: #28a745;
+      color: white;
+      padding: 5px 10px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 4px;
+    }
+    .editable {
+      background: #fff8dc;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-controls">
+    <button id="btn-delete-all" class="btn-delete-all">Hapus Semua</button>
+
+<div style="position: relative; display: inline-block;">
+  <button onclick="toggleDropdown()" 
+      style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
+      Pilih Halaman
+  </button>
+
+  <div id="dropdown" 
+      style="display:none; position:absolute; top:100%; left:0; background:#fff; border:1px solid #ccc; box-shadow:0 4px 8px rgba(0,0,0,0.1); border-radius:5px; margin-top:5px; width:150px; z-index:1000;">
+    <a href=".../.../admin" 
+       style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
+       onclick="closeDropdown()">Pengunjung</a>
+    <a href="contact.html" 
+       style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
+       onclick="closeDropdown()">Pesan kontak</a>
+    <a href="Komentar.html" 
+       style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
+       onclick="closeDropdown()">Komentar</a>
+    <!--   <a href="halaman4.html" 
+       style="display:block; padding:10px; color:#333; text-decoration:none;"
+       onclick="closeDropdown()">Halaman 4</a>-->
+  </div>
+</div>
+
+<script>
+function toggleDropdown() {
+  const dropdown = document.getElementById('dropdown');
+  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+
+function closeDropdown() {
+  document.getElementById('dropdown').style.display = 'none';
+}
+</script>
+      </div>
+
+  <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Pesan</th>
+          <th>Waktu</th>
+          <th>Perangkat</th>
+          <th>Lokasi</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="data-body"></tbody>
+    </table>
+  </div>
+</body>
+</html>
