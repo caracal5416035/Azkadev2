@@ -145,7 +145,6 @@ onAuthStateChanged(auth, async (user) => {
   }
   // Jika admin, muat data dan set interval update
   loadData();
-  setInterval(loadData, 1000);
 });
 
 window.onload = () => {
@@ -272,7 +271,7 @@ window.onload = () => {
       <a href="contact.html" 
          style="display:block; padding:10px; color:#333; text-decoration:none; border-bottom:1px solid #eee;"
          onclick="closeDropdown()">Pesan Kontak</a>
-      <a href="komentar.html" 
+      <a href="Komentar.html" 
          style="display:block; padding:10px; color:#333; border-bottom:1px solid #eee; text-decoration:none;"
          onclick="closeDropdown()">Komentar</a>
       <a id="btn-logout"
