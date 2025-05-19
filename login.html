@@ -76,7 +76,7 @@
         // Cek admin
         const isAdmin = await checkIsAdmin(user.email);
         if (isAdmin) {
-          window.location.href = "/"; // redirect ke halaman admin
+          window.location.href = "/adminauth"; // redirect ke halaman admin
         } else {
           showError("Akses ditolak: Anda bukan admin.");
           await auth.signOut();
