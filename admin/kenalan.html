@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Kenalan</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    tr:hover { background-color: #f1f1f1; }
+  </style>
+</head>
+<body>
+  <h2>Data Kenalan</h2>
+  <table id="kenalan-table">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>WA</th>
+        <th>IP / Lokasi</th>
+        <th>Perangkat</th>
+        <th>Waktu</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCarCeydm5a_LMfX4KZd33PcXNq1WDkXHk",
+      authDomain: "kenalanapp-67f7c.firebaseapp.com",
+      projectId: "kenalanapp-67f7c",
+      storageBucket: "kenalanapp-67f7c.appspot.com",
+      messagingSenderId: "378673436901",
+      appId: "1:378673436901:web:5bfcf2467eb2de0d755c0c",
+      measurementId: "G-TH1MDJKBES"
+    };
+
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadData() {
+      const tableBody = document.querySelector('#kenalan-table tbody');
+      const querySnapshot = await getDocs(collection(db, "kenalan"));
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+          <td>${data.nama || '-'}</td>
+          <td>${data.wa || '-'}</td>
+          <td>
+            ${data.lokasi?.ip || '-'}<br>
+            ${data.lokasi?.kota || ''}, ${data.lokasi?.negara || ''}
+          </td>
+          <td>
+            ${data.perangkat?.model ? `Model: ${data.perangkat.model}<br>` : ''}
+            ${data.perangkat?.platform || ''} ${data.perangkat?.platformVersion || ''}<br>
+            ${data.perangkat?.browser || data.perangkat?.userAgent || ''}
+          </td>
+          <td>${data.timestamp?.toDate ? new Date(data.timestamp.toDate()).toLocaleString() : new Date(data.timestamp).toLocaleString()}</td>
+        `;
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
