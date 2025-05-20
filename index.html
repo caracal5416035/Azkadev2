@@ -3,9 +3,31 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+<meta name="author" content="Azka Arrodhi" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Language" content="id" />
+
+<link rel="canonical" href="https://azkadev.vercel.app" />
+
+<meta property="og:title" content="Azka Arrodhi" />
+<meta property="og:description" content="Web developer pemula yang sedang belajar dan berkembang di dunia digital." />
+<meta property="og:image" content="/20250210_161152-v2.png" />
+<meta property="og:url" content="https://azkadev.vercel.app/" />
+<meta property="og:type" content="website" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Azka Arrodhi" />
+<meta name="twitter:description" content="Web developer pemula yang sedang belajar dan berkembang di dunia digital." />
+<meta name="twitter:image" content="/20250210_161152-v2.png" />
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//fonts.gstatic.com" crossorigin />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+   
+   
    <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" href="/20250210_161152-v2.png" type="image/png">
-<meta property="og:type" content="website">
+<meta property="og:type" content="personal website">
    <meta name="google-site-verification" content="JlfWKMwF3axyJE1jdbvtIZQTxvP_RDXN-Aca7MWsRpI" />
  <meta name="theme-color" content="#1C2324">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +42,29 @@
 <title>Azka Arrodhi</title>
   <script src="aos.js"></script>
   <link rel="stylesheet" href="index.css">
- 
+   <script>
+   tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563eb',
+            background: '#111',
+            surface: '#1e293b',
+            muted: '#64748b',
+            error: '#ef4444',
+          },
+        },
+      },
+    }
+  
+   </script>
+  
 </head>
 <body translate="no" oncontextmenu="return false;">
+     <div id="loading" class="fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50 hidden" style="pointer-events: all none; z-index: 20000;">
+  <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-primary border-opacity-75"></div>
+</div>
 <header id="main">
   <div class="site-title" aria-label="Site title">AzkaDev</div>
 <button class="menu-button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" id="menu-btn">
@@ -32,21 +74,44 @@
  .progress-bar {
   transition: width 0.5s ease-out;
 }
+   @keyframes rotateIcon {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.menu-button i {
+  display: inline-block; /* supaya transform bisa jalan */
+  transition: transform 0.25s ease;
+}
+
+.menu-button.animate-icon i {
+  animation: rotateIcon 0.6s ease forwards;
+}
  </style>
 </header>
+   <script>
+   const menuBtn = document.querySelector('.menu-button');
 
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.remove('animate-icon');
+  void menuBtn.offsetWidth;
+  menuBtn.classList.add('animate-icon');
+  const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+  menuBtn.setAttribute('aria-expanded', !expanded);
+});
+   </script>
 <img src="/20250210_161152-v2.png" width="0" height="0" alt="logo" />
 <div id="side-nav-backdrop" class="side-nav-backdrop" tabindex="-1"></div>
     
 <nav id="side-menu" class="side-menu" role="navigation" aria-label="Primary navigation" aria-expanded="false">
    <img src="1747219481720.png" style="border-bottom: 0px solid rgba(100,100,100,0.4); margin-bottom: -30px; margin-top: -80px;" class="hidden">
-  <a href="#hero" style="border-top: 1px solid rgba(255,255,255,0.25);" tabindex="-1" style=""><span class="hidden">Home</span></a>
-  <a href="#about" tabindex="-1"><span class="hidden">About</span></a>
-  <a href="#skills" tabindex="-1"><span class="hidden">Skills</span></a>
-  <a href="#projects" tabindex="-1"><span class="hidden">Projects</span></a>
-  <a href="#reviews" tabindex="-1"><span class="hidden">Comments</span></a>
-  <a href="#contact" tabindex="-1"><span class="hidden">Contact</span></a>
-   <a href="adminauth" tabindex="-1"><span class="hidden">Admin</span></a>
+  <a href="#hero" style="border-top: 1px solid rgba(255,255,255,0.25);" tabindex="-1" style=""><i class="fas fa-house" style="margin-right: 9px;"></i> <span class="hidden">Home</span></a>
+  <a href="#about" tabindex="-1"><i class="fas fa-user" style="margin-right: 10px; margin-left: 2px;"></i> <span>About</span></a>
+  <a href="#skills" tabindex="-1"><i class="fas fa-gear" style="margin-left: 2px; margin-right: 10px;"></i> <span class="hidden">Skills</span></a>
+  <a href="#projects" tabindex="-1"><i class="fas fa-laptop-code" style="margin-right: 9px;"></i> <span class="hidden">Projects</span></a>
+  <a href="#reviews" tabindex="-1"><i class="fas fa-comments" style="margin-right: 9px;"></i> <span class="hidden">Comments</span></a>
+  <a href="#contact" tabindex="-1"><i class="fas fa-envelope" style="margin-right: 9px;"></i> <span class="hidden">Contact</span></a>
+   <a href="adminauth" tabindex="-1"><i class="fas fa-user-shield" style="margin-right: 9px;"></i> <span class="hidden">Admin</span></a>
 
     <a tabindex="-1" style="pointer-events: none;"></a>
 </nav>
@@ -313,7 +378,16 @@
     <a href="https://instagram.com/ins.azka" target="_blank" rel="noopener" aria-label="instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
   </div>
 </section>
-
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById('loading');
+    loader.classList.remove('hidden');
+  });
+  window.addEventListener("load", () => {
+    const loader = document.getElementById('loading');
+    loader.classList.add('hidden');
+  });
+</script>
 <footer>
   &copy; 2025 Azka Arrodhi. All rights reserved.
 </footer>
