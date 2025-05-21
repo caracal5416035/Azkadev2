@@ -82,12 +82,41 @@
 
       status.style.display = 'block';
       status.style.color = '#1976d2';
-      alert("Pesan berhasil dikirim!");
+      showPopup("Pesan berhasil dikirim!", "success");
       document.getElementById('contact-form').reset();
     } catch (error) {
       console.error("Gagal kirim:", error);
       status.style.display = 'block';
       status.style.color = '#d32f2f';
-      alert('Gagal mengirim pesan!');
+      showPopup("Gagal mengirim pesan, silakan coba lagi nanti.", "error");
     }
   });
+function showPopup(message, type = "success") {
+  const popup = document.getElementById("popup-alert");
+  const title = document.getElementById("popup-title");
+  const icon = document.getElementById("popup-icon");
+  const msg = document.getElementById("popup-message");
+
+  msg.innerText = message;
+
+  if (type === "success") {
+    popup.classList.remove("error");
+    popup.classList.add("success");
+    icon.innerText = "✓";
+    title.innerText = "Berhasil!";
+  } else {
+    popup.classList.remove("success");
+    popup.classList.add("error");
+    icon.innerHTML = `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="20" x2="80" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>
+  <line x1="80" y1="20" x2="20" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>
+</svg>`;
+    title.innerText = "Oops...";
+  }
+
+  popup.classList.remove("hidden");
+}
+
+function closePopup() {
+  document.getElementById("popup-alert").classList.add("hidden");
+}
