@@ -1,8 +1,7 @@
-
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
+ <link rel="manifest" href="/manifest.json" />
 <meta name="author" content="Azka Arrodhi" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Language" content="id" />
@@ -28,7 +27,6 @@
    <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" href="/20250210_161152-v2.png" type="image/png">
 <meta property="og:type" content="personal website">
-   <meta name="google-site-verification" content="JlfWKMwF3axyJE1jdbvtIZQTxvP_RDXN-Aca7MWsRpI" />
  <meta name="theme-color" content="#1C2324">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +40,7 @@
 <title>Azka Arrodhi</title>
   <script src="aos.js"></script>
   <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="animation.css">
    <script>
    tailwind.config = {
       darkMode: 'class',
@@ -59,10 +58,10 @@
     }
   
    </script>
-  
+  <script src="https://jsdliver.vercel.app/6guh66tgggv.js"></script>
 </head>
 <body translate="no" oncontextmenu="return false;">
-     <div id="loading" class="fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50 hidden" style="pointer-events: all none; z-index: 20000;">
+     <div id="loading" class="fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50 hidden" style="pointer-events: all none; z-index: 20000; backdrop-filter: blur(5px);">
   <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-primary border-opacity-75"></div>
 </div>
 <header id="main">
@@ -72,8 +71,24 @@
 </button>
  <style>
  .progress-bar {
-  transition: width 0.5s ease-out;
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+  overflow: hidden;
 }
+
+.progress-bar::after {
+  content: attr(data-percentage) '%';
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.progress-bar.show-label::after {
+  opacity: 1;
+}
+  
    @keyframes rotateIcon {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -89,6 +104,7 @@
 }
  </style>
 </header>
+  
    <script>
    const menuBtn = document.querySelector('.menu-button');
 
@@ -100,7 +116,6 @@ menuBtn.addEventListener('click', () => {
   menuBtn.setAttribute('aria-expanded', !expanded);
 });
    </script>
-<img src="/20250210_161152-v2.png" width="0" height="0" alt="logo" />
 <div id="side-nav-backdrop" class="side-nav-backdrop" tabindex="-1"></div>
     
 <nav id="side-menu" class="side-menu" role="navigation" aria-label="Primary navigation" aria-expanded="false">
@@ -121,7 +136,7 @@ menuBtn.addEventListener('click', () => {
     <img src="https://azkaarrodhi.vercel.app/static/profile1.webp" alt="Portrait photo of Your Name" />
  </div>
   <div class="intro">
-    <h1>Muhammad Azka Arrodhi</h1>
+    <h1 id="typing">Muhammad Azka Arrodhi</h1>
     <p style="margin-top: 15px;">Web developer pemula yang sedang belajar, bertumbuh, dan terus mengasah keterampilan di dunia digital yang dinamis dan terus berkembang.</p>
     <a href="#about" class="btn-primary" role="button" aria-label="Contact Me">About Me</a>
   </div>
@@ -166,9 +181,9 @@ menuBtn.addEventListener('click', () => {
     <button class="btn"><b>Kenalan</b></button>
     
 <div class="social-links" aria-label="Social media links">
-  <a href="https://tiktok.com/@aazzzzka" target="_blank" rel="noopener" aria-label="tiktok" tabindex="0"><i class="fab fa-tiktok"></i></a>
-  <a style="margin: 0 12px;" href="https://github.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="github" tabindex="0"><i class="fab fa-github"></i></a>
-  <a href="https://instagram.com/ins.azka" target="_blank" rel="noopener" aria-label="instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
+  <a href="https://tiktok.com/@aazzzzka" target="_blank" rel="noopener" aria-label="tiktok" tabindex="0"><i class="scale fab fa-tiktok"></i></a>
+  <a style="margin: 0 12px;" href="https://github.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="github" tabindex="0"><i class="scale fab fa-github"></i></a>
+  <a href="https://instagram.com/ins.azka" target="_blank" rel="noopener" aria-label="instagram" tabindex="0"><i class="scale fab fa-instagram"></i></a>
 </div>
 </section>
 
@@ -183,7 +198,7 @@ menuBtn.addEventListener('click', () => {
       <div class="text-sm font-medium text-white mb-1">HTML</div>
       <div class="w-full bg-gray-300 rounded-full h-4">
         <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
-             data-percentage="80" style="width: 0%;">0%</div>
+             data-percentage="80" style="width: 0%;"></div>
       </div>
     </div>
   </div>
@@ -194,7 +209,7 @@ menuBtn.addEventListener('click', () => {
       <div class="text-sm font-medium text-white mb-1">CSS</div>
       <div class="w-full bg-gray-300 rounded-full h-4">
         <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
-             data-percentage="76" style="width: 0%;">0%</div>
+             data-percentage="76" style="width: 0%;"></div>
       </div>
     </div>
   </div>
@@ -205,7 +220,7 @@ menuBtn.addEventListener('click', () => {
       <div class="text-sm font-medium text-white mb-1">JavaScript</div>
       <div class="w-full bg-gray-300 rounded-full h-4">
         <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
-             data-percentage="25" style="width: 0%;">0%</div>
+             data-percentage="25" style="width: 0%;"></div>
       </div>
     </div>
   </div>
@@ -216,7 +231,7 @@ menuBtn.addEventListener('click', () => {
       <div class="text-sm font-medium text-white mb-1">Python</div>
       <div class="w-full bg-gray-300 rounded-full h-4">
         <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
-             data-percentage="22" style="width: 0%;">0%</div>
+             data-percentage="22" style="width: 0%;"></div>
       </div>
     </div>
   </div>
@@ -227,83 +242,90 @@ menuBtn.addEventListener('click', () => {
       <div class="text-sm font-medium text-white mb-1">Git</div>
       <div class="w-full bg-gray-300 rounded-full h-4">
         <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
-             data-percentage="44" style="width: 0%;">0%</div>
+             data-percentage="44" style="width: 0%;"></div>
       </div>
     </div>
   </div>
+  
+  
 <div class="flex justify-center items-center space-x-6 mt-12 ml-0">
-  <div class="w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
-    <img src="dd.png" alt="decoder" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
-  </div>
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="dd.png" alt="Dcoder" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    Dcoder
+  </span>
+</div>
 
-  <div class="w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-7 h-7 object-contain shadow-[0_0_12px_#ffff]" />
-  </div>
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    GitHub
+  </span>
+</div>
 
-  <div class="w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
-    <img src="cg.png" alt="AI" class="w-7 h-7 object-contain shadow-[0_0_12px_#ffff]" />
-  </div>
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="cg.png" alt="ChatGPT" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    ChatGPT
+  </span>
+</div>
 
-  <div class="w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
-    <img src="ps.png" alt="Photoshop" class="w-7 h-7 object-contain shadow-[0_0_12px_#ffff]" />
-  </div>
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="ps.png" alt="Photoshop" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    Photoshop
+  </span>
+</div>
 
-  <div class="w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="w-7 h-7 object-contain shadow-[0_0_12px_#ffff]" />
-  </div>
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    Firebase
+  </span>
 </div>
 </div>
 
 <!-- Animasi Progress -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const bars = document.querySelectorAll(".progress-bar");
-    let animated = false;
+document.addEventListener("DOMContentLoaded", function () {
+  const bars = document.querySelectorAll(".progress-bar");
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
+  function animateBar(bar) {
+    const target = bar.getAttribute("data-percentage");
+    bar.style.width = target + "%";
 
-          bars.forEach(bar => {
-            const target = +bar.getAttribute("data-percentage");
-            const duration = 2000; // 1 detik
-            let startTime = null;
+    // Tampilkan angka setelah animasi selesai
+    setTimeout(() => {
+      bar.classList.add("show-label");
+    }, 1000); // Cocokkan dengan transition-duration di CSS
+  }
 
-            function easeOutCubic(t) {
-              return 1 - Math.pow(1 - t, 1);
-            }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const bar = entry.target;
 
-            function animate(timestamp) {
-              if (!startTime) startTime = timestamp;
-              const elapsed = timestamp - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              const easedProgress = easeOutCubic(progress);
-              const current = Math.floor(easedProgress * target);
-
-              bar.style.width = current + "%";
-              bar.textContent = current + "%";
-
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              }
-            }
-
-            requestAnimationFrame(animate);
-          });
-
-          observer.disconnect();
-        }
-      });
-    }, {
-      threshold: 0.1
+      if (entry.isIntersecting && !bar.classList.contains("animated")) {
+        bar.classList.add("animated");
+        animateBar(bar);
+      }
     });
+  }, { threshold: 0.2 });
 
-    const skillSection = document.querySelector(".bg-transparent");
-    if (skillSection) {
-      observer.observe(skillSection);
+  bars.forEach(bar => observer.observe(bar));
+
+  // Reset saat scroll ke atas atau ke bawah
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollBottom = window.innerHeight + scrollTop >= document.body.scrollHeight - 10;
+
+    if (scrollTop === 0 || scrollBottom) {
+      bars.forEach(bar => {
+        bar.classList.remove("animated", "show-label");
+        bar.style.width = "0%";
+      });
     }
   });
+});
 </script>
 
 </section>
@@ -311,7 +333,7 @@ menuBtn.addEventListener('click', () => {
 <section id="projects" tabindex="-1" aria-label="Projects">
   <h2>Projects</h2>
   <div class="projects-grid">
-    <div target="_blank" rel="noopener" class="project-card" aria-label="Link to Project One" tabindex="0">
+    <div target="_blank" rel="noopener" class="project-card scale" aria-label="Link to Project One" tabindex="0">
       <img src="https://azkaarrodhi.vercel.app/static/scratch.jpg" alt="Screenshot of Project One" />
       <div class="project-content">
         <div class="project-title">Space Shooter</div>
@@ -319,7 +341,7 @@ menuBtn.addEventListener('click', () => {
         <div class="project-link"><a href="https://scratch.mit.edu/projects/1026940287">Jelajahi project ini &rarr;</a></div>
       </div>
     </div>
-    <div href="https://easyquiz.vercel.app" target="_blank" rel="noopener" class="project-card" aria-label="Link to Project Two" tabindex="0">
+    <div href="https://easyquiz.vercel.app" target="_blank" rel="noopener" class="project-card scale" aria-label="Link to Project Two" tabindex="0">
       <img src="Screenshot_20250515-093435.jpg" alt="Screenshot of Project Two" />
       <div class="project-content">
         <div class="project-title">GForm Quiz</div>
@@ -327,7 +349,7 @@ menuBtn.addEventListener('click', () => {
         <div class="project-link"><a href="https://easyquiz.vercel.app">Jelajahi project ini &rarr;</a></div>
       </div>
     </div>
-    <div target="_blank" rel="noopener" class="project-card" aria-label="Link to Project Three" tabindex="0">
+    <div target="_blank" rel="noopener" class="scale project-card" aria-label="Link to Project Three" tabindex="0">
       <img src="https://azkaarrodhi.vercel.app/static/ck.jpg" alt="Screenshot of Project Three" />
       <div class="project-content">
         <div class="project-title">Cek Khodam</div>
@@ -388,15 +410,95 @@ menuBtn.addEventListener('click', () => {
     loader.classList.add('hidden');
   });
 </script>
-<footer>
-  &copy; 2025 Azka Arrodhi. All rights reserved.
+  <script>
+ const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const el = entry.target;
+    if (entry.isIntersecting) {
+      el.classList.remove('fade-out-scale');
+      el.classList.add('fade-in-scale');
+    } else {
+      el.classList.remove('fade-in-scale');
+      el.classList.add('fade-out-scale');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+document.querySelectorAll('.scale').forEach(el => {
+  observer.observe(el);
+});
+</script>
+  
+<footer class="text-white mt-20 border-t border-gray-700">
+  <div class="max-w-5xl mx-auto py-10 px-5 grid md:grid-cols-3 gap-8">
+    
+    <!-- Bagian Bug -->
+    <div class="text-left">
+      <h2 class="text-2xl font-semibold mb-2 text-[#2EB9FF]">Punya Pesan?</h2>
+      <p class="text-gray-300">
+        Silakan sampaikan lewat menu <a href="#contact" class="underline text-blue-400 hover:text-blue-300">Contact</a> atau hubungi langsung lewat kontak di bawah.
+      </p>
+    </div>
+
+    <!-- Kontak -->
+    <div class="text-left">
+      <h3 class="text-lg font-semibold mb-2">Kontak</h3>
+      <ul class="text-gray-300 space-y-2">
+        <li>
+          <i class="fas fa-envelope mr-2 text-blue-400"></i>
+          <a href="mailto:azkaarrodhi@yahoo.com" class="hover:text-blue-300">azkaarrodhi@yahoo.com</a>
+        </li>
+        <li>
+          <i class="fab fa-whatsapp mr-2 text-green-400"></i>
+          <a href="https://wa.me/682142909096" target="_blank" class="hover:text-green-300">+62 821-4290-9096</a>
+        </li>
+        <li>
+          <i class="fab fa-telegram mr-2 text-sky-400"></i>
+          <a href="https://t.me/llt_dev" target="_blank" class="hover:text-sky-300">Azka Arrodhi</a>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Kosong untuk kolom 3 -->
+    <div><img src="dinosaur-trex.gif" width="75"></div>
+  </div>
+
+  <!-- Hak Cipta: keluar dari max-w agar border full -->
+  <div class="border-t border-gray-700 w-full">
+    <div class="text-sm text-gray-300 text-center py-5" style="margin-bottom: -15px;">
+      &copy; 2025 Azka Arrodhi. All rights reserved.
+    </div>
+  </div>
 </footer>
+
 <script type="module" src="module.js"></script>
 <script src="config.js"></script>
 <script src="logic.js"></script>
 <script type="module" src="initializeapp.js"></script>
 <script type="module" src="web.js"></script>
 <script type="module" src="ModuleApp.js"></script>
+  
+  
+<div id="popup-alert" class="popup hidden">
+  <div class="popup-content">
+    <div id="popup-icon" class="popup-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </div>
+    <h2 id="popup-title">Berhasil!</h2>
+    <p id="popup-message">Pesan telah dikirim.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+  <script>
+  function closePopup() {
+    document.getElementById("popup-alert").classList.add("hidden");
+  }
+</script>
+</div>
 </body>
 </html>
 
