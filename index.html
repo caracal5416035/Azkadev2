@@ -66,9 +66,10 @@
 </div>
 <header id="main">
   <div class="site-title" aria-label="Site title">AzkaDev</div>
-<button class="menu-button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" id="menu-btn">
-  <i class="fas fa-bars" id="menu-icon" style="font-size: 24px; color: #fff;"></i>
-</button>
+  <div style="display: flex;">
+      <a id="fullscreen-btn"><i style="font-size: 20px; margin-top: 1.6px; color: #fff; margin-right: 20px;" class="fas fa-up-right-and-down-left-from-center" id="fullscreen-icon"></i></a>
+    <button class="menu-button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" id="menu-btn"><i class="fas fa-bars" id="menu-icon" style="font-size: 24px; color: #fff; margin: 0;"></i></button>
+</div>
  <style>
  .progress-bar {
   height: 100%;
@@ -102,9 +103,35 @@
 .menu-button.animate-icon i {
   animation: rotateIcon 0.6s ease forwards;
 }
+
+  .bubble {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(28, 134, 238, 0.5);
+    pointer-events: none;
+    animation: bubble-fade 0.4s ease-out forwards;
+    z-index: 9999;
+  }
+
+  @keyframes bubble-fade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+
+
+  
  </style>
 </header>
-  
+
    <script>
    const menuBtn = document.querySelector('.menu-button');
 
@@ -140,7 +167,24 @@ menuBtn.addEventListener('click', () => {
     <p style="margin-top: 15px;">Web developer pemula yang sedang belajar, bertumbuh, dan terus mengasah keterampilan di dunia digital yang dinamis dan terus berkembang.</p>
     <a href="#about" class="btn-primary" role="button" aria-label="Contact Me">About Me</a>
   </div>
+
 </section>
+  <script>
+  const btn = document.getElementById('fullscreen-btn');
+const icon = document.getElementById('fullscreen-icon');
+
+btn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    icon.classList.remove('fa-up-right-and-down-left-from-center');
+    icon.classList.add('fa-down-left-and-up-right-to-center');
+  } else {
+    document.exitFullscreen();
+    icon.classList.remove('fa-down-left-and-up-right-to-center');
+    icon.classList.add('fa-up-right-and-down-left-from-center');
+  }
+});
+  </script>
 
 <section id="about" tabindex="-1" aria-label="About me" style="
   background: #24313B;
