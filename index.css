@@ -336,9 +336,11 @@ button[type="submit"] {
 
   }
   #hero h1 {
-    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     line-height: 1.2;
+    font-weight: 500;
+    font-family: 'Arvo', serif;
+    color: deepskyblue;
     margin-top: 1rem;
     margin-bottom: 0.6rem;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
