@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>  
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#151515">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>404 Not Found</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
     * {
+      -webkit-tap-highlight-color: transparent;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -17,18 +20,32 @@
       background-color: #0f0f17;
       color: #eee;
       height: 100vh;
-      display: flex;
+      overflow: hidden;
+      display: flex;      
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 20px;
     }
+  body::before {
+  content: "© Azka AR.";
+  position: fixed;
+  bottom: 12px;
+  right: 18px;
+  font-size: 0.75rem;
+  color: #888;
+  opacity: 0.6;
+  z-index: 100;
+  pointer-events: none;
+  font-family: 'Poppins', sans-serif;
+}
     .container {
       max-width: 400px;
+      margin-top: -100px;
     }
     h1 {
       font-size: 6rem;
-      color: #ff3c78;
+      color: #1c86ee;
     }
     p {
       font-size: 1.2rem;
@@ -38,7 +55,7 @@
     a {
       display: inline-block;
       text-decoration: none;
-      background: #ff3c78;
+      background: #1c86ee;
       color: white;
       padding: 0.8rem 2rem;
       border-radius: 30px;
@@ -46,7 +63,7 @@
       transition: background 0.3s ease;
     }
     a:hover {
-      background: #e52e64;
+      background: #12569a;
     }
     @media (max-width: 480px) {
       h1 { font-size: 4rem; }
@@ -54,11 +71,13 @@
     }
   </style>
 </head>
-<body>
+<body translate="no">
+     <div id="particles-js" style="position: fixed; width: 130%; height: 108%; z-index: -1; pointer-events: none"></div>
   <div class="container">
     <h1>404</h1>
     <p>Oops! Page not found.</p>
     <a href="/">Back to Home</a>
   </div>
+  <script src="particle.js"></script>
 </body>
 </html>
