@@ -62,6 +62,8 @@
   <script src="https://jsdliver.vercel.app/6guh66tgggv.js"></script>
 </head>
 <body translate="no" oncontextmenu="return false;">
+ <div id="particles-js" style="position: fixed; width: 130%; height: 108%; z-index: -1; margin-top: -48px; pointer-events: none;"></div>
+
      <div id="loading" class="fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50 hidden" style="pointer-events: all none; z-index: 20000; backdrop-filter: blur(5px);">
   <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-primary border-opacity-75"></div>
 </div>
@@ -160,8 +162,7 @@ menuBtn.addEventListener('click', () => {
 </nav>
 
 <section id="hero" tabindex="-1" aria-label="Introduction" class="fade-in-top">
-   <div id="particles-js" style="position: fixed; width: 130%; height: 108%; z-index: -1000; margin-top: -48px; pointer-events: none;"></div>
-  <div class="photo" tabindex="0" aria-label="Portrait photo of Azka">
+     <div class="photo" tabindex="0" aria-label="Portrait photo of Azka">
     <img src="https://azkaarrodhi.vercel.app/static/profile1.webp" alt="Portrait photo of Your Name" />
  </div>
   <div class="intro">
@@ -173,7 +174,7 @@ menuBtn.addEventListener('click', () => {
   <a href="#contact" class="btn-primary" role="button" aria-label="Contact">Contact</a>
 </div>
   </div>
-<script src="particle.js"></script>
+
 </section>
   
   <script>
@@ -548,6 +549,7 @@ document.querySelectorAll('.scale').forEach(el => {
   }
 </script>
 </div>
+ <script src="particle.js"></script>
 </body>
 </html>
 
