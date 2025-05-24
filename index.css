@@ -162,7 +162,7 @@ button[type="submit"] {
 }
 
   body {
-    background: linear-gradient(135deg, #151515, #151515);
+    background-color: #0f0f17; /*linear-gradient(135deg, #151515, #151515);*/
   
   }
   html, body {
