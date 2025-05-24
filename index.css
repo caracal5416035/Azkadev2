@@ -162,7 +162,7 @@ button[type="submit"] {
 }
 
   body {
-    background: linear-gradient(135deg, #111, #111);
+    background: linear-gradient(135deg, #151515, #151515);
   
   }
   html, body {
@@ -296,7 +296,7 @@ button[type="submit"] {
     max-width: 1000px;
     margin: 3rem auto 3rem auto;
     padding: 3rem 1rem 4rem 1rem;
-    height: 95%;
+    height: 98%;
     background: transparent;
     color: white;
     border-radius: 0 0 0 0;
