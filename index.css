@@ -161,14 +161,16 @@ button[type="submit"] {
   animation: infinitePulse 2s ease-in-out infinite;
 }
 
+  body {
+    background: linear-gradient(135deg, #111, #111);
   
+  }
   html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(135deg, #192024, #192024);
-    color: #222;
+     color: #222;
     scroll-behavior: smooth;
     min-height: 100vh;
   }
