@@ -296,7 +296,7 @@ button[type="submit"] {
     max-width: 1000px;
     margin: 3rem auto 3rem auto;
     padding: 3rem 1rem 4rem 1rem;
-    height: auto;
+    height: 95%;
     background: transparent;
     color: white;
     border-radius: 0 0 0 0;
