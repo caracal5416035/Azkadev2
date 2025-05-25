@@ -31,7 +31,7 @@ particlesJS("particles-js", {
       },
       "move": {
         "enable": true,
-        "speed": 2.7,
+        "speed": 2.9,
         "direction": "none",
         "out_mode": "bounce"
       }
