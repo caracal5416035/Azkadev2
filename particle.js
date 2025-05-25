@@ -15,11 +15,11 @@ particlesJS("particles-js", {
         "type": "circle"
       },
       "opacity": {
-        "value": 1,
+        "value": 0.5,
         "random": true
       },
       "size": {
-        "value": 4,
+        "value": 3.3,
         "random": true
       },
       "line_linked": {
