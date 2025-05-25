@@ -15,11 +15,11 @@ particlesJS("particles-js", {
         "type": "circle"
       },
       "opacity": {
-        "value": 0.5,
+        "value": 1,
         "random": true
       },
       "size": {
-        "value": 3,
+        "value": 4,
         "random": true
       },
       "line_linked": {
@@ -27,11 +27,11 @@ particlesJS("particles-js", {
         "distance": 150,
         "color": "#1c86ee",
         "opacity": 0.4,
-        "width": 1
+        "width": 1.5
       },
       "move": {
         "enable": true,
-        "speed": 2.5,
+        "speed": 2.7,
         "direction": "none",
         "out_mode": "bounce"
       }
