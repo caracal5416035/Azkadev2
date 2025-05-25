@@ -1,0 +1,20 @@
+const db = getDatabase();
+
+// Fungsi kirim data dummy
+function kirimData(index) {
+  const dataRef = ref(db, 'pesan/' + index);
+  set(dataRef, {
+    nama: "User " + index,
+    pesan: "Ini pesan ke-" + index,
+    waktu: new Date().toISOString()
+  }).then(() => {
+    console.log(`Data ${index} terkirim`);
+  }).catch((error) => {
+    console.error(`Gagal mengirim data ${index}:`, error);
+  });
+}
+
+// Loop kirim 50 data
+for (let i = 1; i <= 50; i++) {
+  kirimData(i);
+}
