@@ -19,7 +19,7 @@ particlesJS("particles-js", {
         "random": true
       },
       "size": {
-        "value": 3.3,
+        "value": 3,
         "random": true
       },
       "line_linked": {
@@ -31,7 +31,7 @@ particlesJS("particles-js", {
       },
       "move": {
         "enable": true,
-        "speed": 3,
+        "speed": 2,
         "direction": "none",
         "out_mode": "bounce"
       }
