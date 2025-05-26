@@ -73,7 +73,7 @@ function escapeHTML(str) {
             }
             <div class="flex items-center gap-4 text-xl font-semibold text-accent mb-2">
               <div class="flex items-center gap-1" style="font-family: 'Roboto Slab', serif;">
-<span style="margin-left: 8px;">${escapeHTML(item.nama.slice(0, 15))}</span>
+<span style="margin-left: 8px; color: #1c86ee;">${escapeHTML(item.nama.slice(0, 15))}</span>
                 ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/cb.png" alt="centang" width="33">` : ""}
                 ${item.bahaya ? `<span onclick="openPrompt()" title="Pesan berbahaya" class="text-red-500" style="font-size: 15px; margin-top: 1.5px; margin-left: 2px;"><i class="fas fa-exclamation-circle"></i></span>` : ""}
               </div>
