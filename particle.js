@@ -27,11 +27,11 @@ particlesJS("particles-js", {
         "distance": 150,
         "color": "#1c86ee",
         "opacity": 0.4,
-        "width": 1.5
+        "width": 1.15
       },
       "move": {
         "enable": true,
-        "speed": 2.9,
+        "speed": 3,
         "direction": "none",
         "out_mode": "bounce"
       }
