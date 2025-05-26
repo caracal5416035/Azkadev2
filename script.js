@@ -65,7 +65,7 @@ function escapeHTML(str) {
       snapshot.forEach(doc => {
         const item = doc.data();
         container.innerHTML += `
-       <div class="bg-card p-3 rounded-2xl relative group transition-transform duration-200" style="border-radius: 5px; border-left: 4px solid #8b5cf6; box-shadow: 0px 1px 15px rgba(0,0,0,0.2); background-color: #2C3842">
+       <div class="bg-card p-3 rounded-2xl relative group transition-transform duration-200" style="border-radius: 5px; border-left: 4px solid #1c86ee; box-shadow: 0px 1px 15px rgba(0,0,0,0.2); background-color: #2C3842">
             ${!item.pinned ? `
               <div class="absolute top-3 right-4 text-gray-400 rotate-45" style="font-size: 17px;">
 
