@@ -1,0 +1,12 @@
+User-agent: Googlebot-Image
+Disallow: /scratch.jpg
+Disallow: /js.png
+Disallow: /python.png
+Disallow: /css.png
+Disallow: /git.png
+Disallow: /html.png
+Disallow: /cg.png
+Disallow: /dd.png
+Disallow: /Screenshot_20250525-081924.jpg
+Disallow: /ck.jpg
+Disallow: /Screenshot_20250515-093435.jpg
