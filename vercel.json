@@ -1,5 +1,9 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api/redirect.js" }
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://azkaarrodhi.vercel.app/:1",
+      "permanent": true
+    }
   ]
 }
