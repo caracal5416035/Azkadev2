@@ -1,91 +1,138 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  startAfter,
+  limit
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-  const firebaseConfig = {apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8", authDomain: "website-61783.firebaseapp.com", projectId: "website-61783", storageBucket: "website-61783.firebasestorage.app", messagingSenderId: "437361977695", appId: "1:437361977695:web:7e1069062bfaca0f02aeea", measurementId: "G-0X5NV4YK2V"
-  };
+// Konfigurasi Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
+  authDomain: "website-61783.firebaseapp.com",
+  projectId: "website-61783",
+  storageBucket: "website-61783.firebasestorage.app",
+  messagingSenderId: "437361977695",
+  appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
+  measurementId: "G-0X5NV4YK2V"
+};
+
+// Inisialisasi Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Escape HTML untuk keamanan
 function escapeHTML(str) {
-    const lines = str.split('\n');
+  const lines = str.split('\n');
 
-    // Hapus baris kosong di awal
-    while (lines.length && lines[0].trim() === '') {
-        lines.shift();
-    }
+  // Hapus baris kosong di awal & akhir
+  while (lines.length && lines[0].trim() === '') lines.shift();
+  while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
 
-    // Hapus baris kosong di akhir
-    while (lines.length && lines[lines.length - 1].trim() === '') {
-        lines.pop();
-    }
+  const result = [];
+  let lastEmpty = false;
 
-    // Proses dan escape, dengan hanya satu baris kosong di antara
-    const result = [];
-    let lastEmpty = false;
-
-    for (const line of lines) {
-        const trimmed = line.trim();
-
-        if (trimmed === '') {
-            if (!lastEmpty) {
-                result.push(''); // Simpan satu baris kosong
-                lastEmpty = true;
-            }
-            // Jika sudah baris kosong sebelumnya, lewati
-        } else {
-            result.push(
-                line
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;")
-            );
-            lastEmpty = false;
-        }
-    }
-
-    return result.join('<br>');
-}
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Menampilkan komentar realtime
-  const tampilData = () => {
-    const container = document.getElementById("data-container");
-    const q = query(collection(db, "uploads"), orderBy("waktu", "desc"));
-    onSnapshot(q, (snapshot) => {
-      container.innerHTML = "";
-      if (snapshot.empty) {
-        container.innerHTML = `<div class="text-center p-6 bg-gray-800 rounded-xl">
-    <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
-    <h1 class="text-xl font-semibold text-gray-100 mb-2" style="text-align: center;">Belum Ada komentar</h1>
-    <p class="text-gray-400 mb-4">Saat ini belum ada komentar yang diunggah. Silakan posting komentar pertama.</p>
-  </div>`;
-        return;
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed === '') {
+      if (!lastEmpty) {
+        result.push('');
+        lastEmpty = true;
       }
+    } else {
+      result.push(
+        line
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;")
+      );
+      lastEmpty = false;
+    }
+  }
 
-      snapshot.forEach(doc => {
-        const item = doc.data();
-        container.innerHTML += `
-       <div class="bg-card p-3 rounded-2xl relative group transition-transform duration-200" style="border-radius: 5px; border-left: 4px solid #1c86ee; box-shadow: 0px 1px 15px rgba(0,0,0,0.2); background-color: #2C3842">
-            ${!item.pinned ? `
-              <div class="absolute top-3 right-4 text-gray-400 rotate-45" style="font-size: 17px;">
+  return result.join('<br>');
+}
 
-              </div>` : ""
-            }
-            <div class="flex items-center gap-4 text-xl font-semibold text-accent mb-2">
-              <div class="flex items-center gap-1" style="font-family: 'Roboto Slab', serif;">
-<span style="margin-left: 8px; color: #1c86ee;">${escapeHTML(item.nama.slice(0, 15))}</span>
-                ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/cb.png" alt="centang" width="33">` : ""}
-                ${item.bahaya ? `<span onclick="openPrompt()" title="Pesan berbahaya" class="text-red-500" style="font-size: 15px; margin-top: 1.5px; margin-left: 2px;"><i class="fas fa-exclamation-circle"></i></span>` : ""}
-              </div>
-            </div>
-<p style="margin-left: 10px; color: #fff; font-family: 'calibri',sans-serif; font-size: 20px; line-height: 1.1; overflow-wrap: anywhere;">
-  ${escapeHTML(item.pesan)}
-</p>
-          <div class="mt-4 text-xs text-gray-400 text-right" style="margin-bottom: -5px;">${item.waktu}</div>
+// Variabel infinite scroll
+let lastVisible = null;
+let loading = false;
+let reachedEnd = false;
+const pageSize = 20;
+
+// Fungsi tampil data
+const tampilData = async () => {
+  if (loading || reachedEnd) return;
+  loading = true;
+
+  const container = document.getElementById("data-container");
+
+  let q = query(
+    collection(db, "uploads"),
+    orderBy("waktu", "desc"),
+    limit(pageSize)
+  );
+
+  if (lastVisible) {
+    q = query(
+      collection(db, "uploads"),
+      orderBy("waktu", "desc"),
+      startAfter(lastVisible),
+      limit(pageSize)
+    );
+  }
+
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    reachedEnd = true;
+    if (!lastVisible) {
+      container.innerHTML = `
+      <div class="text-center p-6 bg-gray-800 rounded-xl">
+        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
+        <h1 class="text-xl font-semibold text-gray-100 mb-2">Belum Ada komentar</h1>
+        <p class="text-gray-400 mb-4">Silakan posting komentar pertama.</p>
+      </div>`;
+    }
+    loading = false;
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    const item = doc.data();
+    container.innerHTML += `
+      <div class="bg-card p-3 rounded-2xl relative group transition-transform duration-200"
+           style="border-radius: 5px; border-left: 4px solid #1c86ee; box-shadow: 0px 1px 15px rgba(0,0,0,0.2); background-color: #2C3842">
+        ${!item.pinned ? `<div class="absolute top-3 right-4 text-gray-400 rotate-45" style="font-size: 17px;"></div>` : ""}
+        <div class="flex items-center gap-4 text-xl font-semibold text-accent mb-2">
+          <div class="flex items-center gap-1" style="font-family: 'Roboto Slab', serif;">
+            <span style="margin-left: 8px; color: #1c86ee;">${escapeHTML(item.nama.slice(0, 15))}</span>
+            ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/cb.png" alt="centang" width="33">` : ""}
+            ${item.bahaya ? `<span onclick="openPrompt()" title="Pesan berbahaya" class="text-red-500" style="font-size: 15px; margin-top: 1.5px; margin-left: 2px;"><i class="fas fa-exclamation-circle"></i></span>` : ""}
           </div>
-        `;
-      });
-    });
-  };
+        </div>
+        <p style="margin-left: 10px; color: #fff; font-family: 'calibri',sans-serif; font-size: 20px; line-height: 1.1; overflow-wrap: anywhere;">
+          ${escapeHTML(item.pesan)}
+        </p>
+        <div class="mt-4 text-xs text-gray-400 text-right" style="margin-bottom: -5px;">${item.waktu}</div>
+      </div>
+    `;
+  });
 
-  tampilData();
+  lastVisible = snapshot.docs[snapshot.docs.length - 1];
+  loading = false;
+};
+
+// Panggil pertama kali
+tampilData();
+
+// Infinite Scroll saat mendekati bawah halaman
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
+    tampilData();
+  }
+});
