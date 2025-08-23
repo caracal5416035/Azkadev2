@@ -90,23 +90,3 @@ function escapeHTML(str) {
 
   tampilData();
 
-// === FOTO HERO OTOMATIS ===
-import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-// ambil elemen img di section hero
-const heroImg = document.querySelector("#hero .photo img");
-
-// referensi dokumen di Firestore
-const heroRef = doc(db, "settings", "hero");
-
-// realtime listener
-onSnapshot(heroRef, (docSnap) => {
-  if (docSnap.exists()) {
-    const data = docSnap.data();
-    if (data.photoUrl) {
-      heroImg.src = data.photoUrl; // ganti foto otomatis
-    }
-  } else {
-    console.log("Dokumen hero belum ada di Firestore");
-  }
-});
