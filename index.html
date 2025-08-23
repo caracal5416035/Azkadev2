@@ -237,7 +237,7 @@ box-shadow: 0 0 0 1px #ccc;
 </nav>
 
 <section id="hero" tabindex="-1" aria-label="Introduction" class="fade-in-top">
-     <div class="photo" tabindex="0" aria-label="Portrait photo of Azka">
+     <div class="photo c" tabindex="0" aria-label="Portrait photo of Azka">
     <img src=""/>
  </div>
   <div class="intro">
@@ -668,9 +668,9 @@ document.querySelectorAll('.scale').forEach(el => {
   const db = getFirestore(app);
 
   // ambil elemen img di section hero
-  const heroImg = document.querySelector("#hero .photo img");
+  const heroImg = document.querySelector(".c");
 
-  // referensi dokumen di Firestore
+  // i dokumen di Firestore
   const heroRef = doc(db, "settings", "hero");
 
   // realtime listener
