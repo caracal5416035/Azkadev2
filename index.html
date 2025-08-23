@@ -646,8 +646,45 @@ document.querySelectorAll('.scale').forEach(el => {
     document.getElementById("popup-alert").classList.add("hidden");
   }
 </script>
+ 
 </div>
  <script src="particle.js"></script>
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  // === KONFIG FIREBASE ===
+  const firebaseConfig = {
+    apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
+    authDomain: "website-61783.firebaseapp.com",
+    projectId: "website-61783",
+    storageBucket: "website-61783.firebasestorage.app",
+    messagingSenderId: "437361977695",
+    appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
+    measurementId: "G-0X5NV4YK2V"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ambil elemen img di section hero
+  const heroImg = document.querySelector("#hero .photo img");
+
+  // referensi dokumen di Firestore
+  const heroRef = doc(db, "settings", "hero");
+
+  // realtime listener
+  onSnapshot(heroRef, (docSnap) => {
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      if (data.photoUrl) {
+        heroImg.src = data.photoUrl; // ganti foto otomatis
+      }
+    } else {
+      console.log("Dokumen hero belum ada di Firestore");
+    }
+  });
+</script>
 </body>
 </html>
 
