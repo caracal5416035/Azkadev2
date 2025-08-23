@@ -237,8 +237,8 @@ box-shadow: 0 0 0 1px #ccc;
 </nav>
 
 <section id="hero" tabindex="-1" aria-label="Introduction" class="fade-in-top">
-     <div class="photo c" tabindex="0" aria-label="Portrait photo of Azka">
-    <img src=""/>
+     <div class="photo" tabindex="0" aria-label="Portrait photo of Azka">
+    <img class="c" src=""/>
  </div>
   <div class="intro">
     <h1 id="typing">Muhammad Azka Arrodhi</h1>
@@ -668,7 +668,7 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 const db = getFirestore(app);
 
 // ambil elemen img
-const heroImg = document.querySelector(".photo img");
+const heroImg = document.querySelector(".c");
 
 // referensi dokumen
 const heroRef = doc(db, "settings", "hero");
