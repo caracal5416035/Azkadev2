@@ -194,21 +194,23 @@ button[type="submit"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 0.6rem 1rem;
     box-shadow: 0 0 0px rgba(10,10,10,0.2);
     z-index: 1100;
   }
   .site-title {
-  font-family: 'Montserrat', sans-serif;
+  
   font-weight: 700;
-  font-size: 1.5rem;
+  
   user-select: none;
-  color: #1c86ee;
-  text-shadow:
-    1px 1px 0 #d1d5db,  /* abu-abu terang (Tailwind slate-300) */
-    2px 2px 0 #9ca3af,  /* abu-abu sedang (Tailwind gray-400) */
-    3px 3px 4px rgba(0, 0, 0, 0.15); /* bayangan lebih lembut */
-}
+  
+/*  text-shadow:
+    1px 1px 0 #d1d5db,  
+    2px 2px 0 #9ca3af,
+    3px 3px 4px rgba(0, 0, 0, 0.15); 
+*/
+  
+  }
   /* Menu button: three vertical dots */
   .menu-button {
     width: 25px;
