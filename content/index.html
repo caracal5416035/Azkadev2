@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirect Halaman</title>
-
-  <meta http-equiv="refresh" content="0; url="d">
 </head>
 <body>
   <script>
-   
-    window.location.href = "/content/C54XL20250910.xlsx";
-  
+    window.open("/content/C54XL20250910.xlsx", "_blank");
+    setTimeout(function() {
+      window.location.href = "/d";
+    }, 500); 
   </script>
 </body>
 </html>
