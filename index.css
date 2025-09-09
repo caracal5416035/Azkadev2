@@ -204,15 +204,11 @@ button[type="submit"] {
     margin-left: 12px; 
     color: gold;
   font-weight: 700;
-  
   user-select: none;
-  
  text-shadow:
     1px 1px 0 #d1d5db,  
     2px 2px 0 #9ca3af,
     3px 3px 4px rgba(0, 0, 0, 0.15); 
-
-  
   }
   /* Menu button: three vertical dots */
   .menu-button {
