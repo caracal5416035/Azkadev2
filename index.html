@@ -396,7 +396,7 @@ btn.addEventListener('click', () => {
 <p><b>&#x4E;&#x65;&#x67;&#x61;&#x72;&#x61;&#x3A;</b> &#x49;&#x6E;&#x64;&#x6F;&#x6E;&#x65;&#x73;&#x69;&#x61;</p>
   </div>
     
-    <button class="btn" id="clickMe"><b>Kenalan</b></button>
+    <button class="btn" id="clickMee"><b>Kenalan</b></button>
  
     <div id="overlay" class="overlay"></div>
   <div id="popup" class="popup">
@@ -407,12 +407,12 @@ btn.addEventListener('click', () => {
   </div>
 
   <script>
-    const btn = document.getElementById("clickMe");
+    const btnn = document.getElementById("clickMee");
     const popup = document.getElementById("popup");
     const overlay = document.getElementById("overlay");
     const video = document.getElementById("videoPlayer");
 
-    btn.addEventListener("click", () => {
+    btnn.addEventListener("click", () => {
       
       video.currentTime = 0;
       video.play();
@@ -424,7 +424,7 @@ btn.addEventListener('click', () => {
       overlay.classList.add("show");
 
     
-      btn.disabled = true;
+      btnn.disabled = true;
 
   
       setTimeout(() => {
@@ -440,7 +440,7 @@ btn.addEventListener('click', () => {
           popup.style.display = "none";
           overlay.style.display = "none";
           video.pause(); 
-          btn.disabled = false; 
+          btnn.disabled = false; 
         }, 600);
       }, 13000);
     });
@@ -756,7 +756,7 @@ document.querySelectorAll('.scale').forEach(el => {
 <script src="config.js"></script>
 <script src="logic.js"></script>
 
-<script type="module" src="web.js"></script>
+<!--<script type="module" src="web.js"></script> kenalan-->
 
 <script type="module" src="ModuleApp.js"></script>
   
