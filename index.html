@@ -409,51 +409,49 @@ btn.addEventListener('click', () => {
  
     <div id="overlay" class="overlay"></div>
   <div id="popup" class="popup">
-    <video id="videoPlayer" autoplay muted>
+    <video id="videoPlayer">
       <source src="/video/itachi.mp4" type="video/mp4">
       
     </video>
-  </div>
+     </div>
+   <script>
+  const btnn = document.getElementById("clickMee");
+  const popup = document.getElementById("popup");
+  const overlay = document.getElementById("overlay");
+  const video = document.getElementById("videoPlayer");
 
-  <script>
-    const btnn = document.getElementById("clickMee");
-    const popup = document.getElementById("popup");
-    const overlay = document.getElementById("overlay");
-    const video = document.getElementById("videoPlayer");
+  btnn.addEventListener("click", () => {
+    video.currentTime = 0;
+    video.muted = false; // aktifkan suara
+    video.play();      
 
-    btnn.addEventListener("click", () => {
-      
-      video.currentTime = 0;
-      video.play();
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    popup.classList.add("show");
+    overlay.classList.add("show");
 
-      // tampilkan popup + overlay
-      popup.style.display = "block";
-      overlay.style.display = "block";
-      popup.classList.add("show");
-      overlay.classList.add("show");
+    btnn.disabled = true;
 
-    
-      btnn.disabled = true;
+    setTimeout(() => {
+      popup.classList.remove("show");
+      popup.classList.add("hide");
+      overlay.classList.remove("show");
+      overlay.classList.add("hide");
+
+      setTimeout(() => {
+        popup.classList.remove("hide");
+        overlay.classList.remove("hide");
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        video.pause(); 
+        btnn.disabled = false; 
+      }, 600);
+    }, 13000);
+  });
+</script>
+
 
   
-      setTimeout(() => {
-        popup.classList.remove("show");
-        popup.classList.add("hide");
-        overlay.classList.remove("show");
-        overlay.classList.add("hide");
-
-        
-        setTimeout(() => {
-          popup.classList.remove("hide");
-          overlay.classList.remove("hide");
-          popup.style.display = "none";
-          overlay.style.display = "none";
-          video.pause(); 
-          btnn.disabled = false; 
-        }, 600);
-      }, 13000);
-    });
-  </script>
 <div class="social-links" aria-label="Social media links">
   <a href="https://tiktok.com/@azkaarrodhi" target="_blank" rel="noopener" aria-label="tiktok" tabindex="0"><i class="scale fab fa-tiktok"></i></a>
   <a style="margin: 0 12px;" href="https://github.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="github" tabindex="0"><i class="scale fab fa-github"></i></a>
