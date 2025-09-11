@@ -442,22 +442,23 @@ btn.addEventListener('click', () => {
   </div>
    <script>
   const btnn = document.getElementById("clickMee");
-  const popup = document.getElementById("popup");
-  const overlay = document.getElementById("overlay");
-  const video = document.getElementById("videoPlayer");
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("videoPlayer");
 
-  btnn.addEventListener("click", () => {
-    video.currentTime = 0;
-    video.muted = false; // aktifkan suara
-    video.play();      
+btnn.addEventListener("click", () => {
+  video.currentTime = 0;
+  video.muted = false;
+  video.play();      
 
-    popup.style.display = "block";
-    overlay.style.display = "block";
-    popup.classList.add("show");
-    overlay.classList.add("show");
+  popup.style.display = "block";
+  overlay.style.display = "block";
+  popup.classList.add("show");
+  overlay.classList.add("show");
 
-    btnn.disabled = true;
+  btnn.disabled = true;
 
+  video.onended = () => {
     setTimeout(() => {
       popup.classList.remove("show");
       popup.classList.add("hide");
@@ -469,11 +470,11 @@ btn.addEventListener('click', () => {
         overlay.classList.remove("hide");
         popup.style.display = "none";
         overlay.style.display = "none";
-        video.pause(); 
-        btnn.disabled = false; 
-      }, 600);
-    }, 24500);
-  });
+        btnn.disabled = false;
+      }, 600); // durasi animasi hide
+    }, 500); // delay 0.5 detik setelah video selesai
+  };
+});
 </script>
 
 
