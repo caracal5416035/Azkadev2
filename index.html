@@ -158,8 +158,22 @@
       from { opacity: 1; }
       to { opacity: 0; }
     }
-   #popup::before {
-  content: "Azka";
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.watermark {
   position: absolute;
   bottom: 10px;
   right: 15px;
@@ -169,8 +183,7 @@
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
   pointer-events: none;
-       }
-
+  }
 
   
 
@@ -422,11 +435,13 @@ btn.addEventListener('click', () => {
  
     <div id="overlay" class="overlay"></div>
   <div id="popup" class="popup">
-    <video id="videoPlayer">
+  <div class="video-wrapper">
+    <video id="videoPlayer" controls>
       <source src="/video/2025-09-10-215453942.mp4" type="video/mp4">
-      
     </video>
-     </div>
+    <span class="watermark">Azka</span>
+  </div>
+  </div>
    <script>
   const btnn = document.getElementById("clickMee");
   const popup = document.getElementById("popup");
