@@ -158,12 +158,7 @@
       from { opacity: 1; }
       to { opacity: 0; }
     }
-   .video-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.video-wrapper::before {
+   #popup::before {
   content: "Azka";
   position: absolute;
   bottom: 10px;
@@ -174,8 +169,7 @@
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
   pointer-events: none;
-}
-
+       }
 
 
   
@@ -427,7 +421,7 @@ btn.addEventListener('click', () => {
     <button class="btn" id="clickMee"><b>Click Me!</b></button>
  
     <div id="overlay" class="overlay"></div>
-  <div id="popup" class="popup video-wrapper">
+  <div id="popup" class="popup">
     <video id="videoPlayer">
       <source src="/video/2025-09-10-215453942.mp4" type="video/mp4">
       
