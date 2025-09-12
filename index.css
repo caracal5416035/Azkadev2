@@ -169,7 +169,7 @@ button[type="submit"] {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    overflow-y: scroll;
+    
     scroll-snap-type: y mandatory;
     font-family: 'Open Sans', sans-serif;
      color: #222;
