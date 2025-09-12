@@ -789,7 +789,7 @@ button[type="submit"] {
   }
 
   .btn:hover {
-    background: #12559a; /* warna lebih gelap saat hover */
+   /* background: #12559a; /* warna lebih gelap saat hover */
   }
 
   .btn::before {
