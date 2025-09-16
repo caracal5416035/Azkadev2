@@ -812,23 +812,17 @@ document.querySelectorAll('.scale').forEach(el => {
 <script type="module" src="ModuleApp.js"></script>
   
   
-<div id="popup-alert" class="popup hidden">
-  <div class="popup-content">
-    <div id="popup-icon" class="popup-icon">
-      <svg viewBox="0 0 24 24">
-        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-      </svg>
-    </div>
-    <h2 id="popup-title">Berhasil!</h2>
-    <p id="popup-message">Pesan telah dikirim.</p>
-    <button onclick="closePopup()">OK</button>
+<div id="contact-popup" class="contact-popup hidden fixed inset-0 flex items-center justify-center z-50">
+  <div class="contact-popup-content bg-gray-900 text-white rounded-2xl p-6 shadow-xl w-[90%] max-w-sm text-center animate-contact-bounce-in">
+    <div id="contact-popup-icon" class="contact-popup-icon mx-auto w-14 h-14 mb-4"></div>
+    <h2 id="contact-popup-title" class="text-lg font-bold mb-2"></h2>
+    <p id="contact-popup-message" class="text-sm text-gray-300"></p>
+    <button onclick="closeContactPopup()" 
+            class="mt-5 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 transition">
+      OK
+    </button>
   </div>
 </div>
-  <script>
-  function closePopup() {
-    document.getElementById("popup-alert").classList.add("hidden");
-  }
-</script>
  
 </div>
  <script src="particle.js"></script>
