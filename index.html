@@ -84,7 +84,7 @@
     }
 
     /* Pop-up */
-    .popup {
+    .popupvd {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -127,12 +127,12 @@
       }
     }
 
-    .popup.show {
+    .popupvd.show {
       display: block;
       animation: fadeInZoom 0.4s ease forwards;
     }
 
-    .popup.hide {
+    .popupvd.hide {
       animation: fadeOutZoom 0.4s ease forwards;
     }
 
@@ -434,7 +434,7 @@ btn.addEventListener('click', () => {
     <button class="btn" id="clickMee"><b>Click Me!</b></button>
  
     <div id="overlay" class="overlay"></div>
-  <div id="popup" class="popup">
+  <div id="popupVideo" class="popupvd">
   <div class="video-wrapper">
     <video id="videoPlayer" preload="auto" poster="foto/poster.jpg">
       <source src="/video/2025-09-10-215453942.mp4" type="video/mp4">
@@ -444,7 +444,7 @@ btn.addEventListener('click', () => {
   </div>
    <script>
   const btnn = document.getElementById("clickMee");
-const popup = document.getElementById("popup");
+const popupvd = document.getElementById("popupVideo");
 const overlay = document.getElementById("overlay");
 const video = document.getElementById("videoPlayer");
 
@@ -453,24 +453,24 @@ btnn.addEventListener("click", () => {
   video.muted = false;
   video.play();      
 
-  popup.style.display = "block";
+  popupvd.style.display = "block";
   overlay.style.display = "block";
-  popup.classList.add("show");
+  popupvd.classList.add("show");
   overlay.classList.add("show");
 
   btnn.disabled = true;
 
   video.onended = () => {
     setTimeout(() => {
-      popup.classList.remove("show");
-      popup.classList.add("hide");
+      popupvd.classList.remove("show");
+      popupvd.classList.add("hide");
       overlay.classList.remove("show");
       overlay.classList.add("hide");
 
       setTimeout(() => {
-        popup.classList.remove("hide");
+        popupvd.classList.remove("hide");
         overlay.classList.remove("hide");
-        popup.style.display = "none";
+        popupvd.style.display = "none";
         overlay.style.display = "none";
         btnn.disabled = false;
       }, 600); // durasi animasi hide
