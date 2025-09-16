@@ -91,34 +91,30 @@
       showPopup("Gagal mengirim pesan, silakan coba lagi nanti.", "error");
     }
   });
-function showPopup(message, type = "success") {
-  const popup = document.getElementById("popup-alert");
-  const title = document.getElementById("popup-title");
-  const icon = document.getElementById("popup-icon");
-  const msg = document.getElementById("popup-message");
+function showContactPopup(message, type = "success") {
+  const popup = document.getElementById("contact-popup");
+  const title = document.getElementById("contact-popup-title");
+  const icon = document.getElementById("contact-popup-icon");
+  const msg = document.getElementById("contact-popup-message");
 
   msg.innerText = message;
 
   if (type === "success") {
-    popup.classList.remove("error");
-    popup.classList.add("success");
-    icon.innerHTML = `<svg viewBox="0 0 24 24">
-        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-      </svg>`;
     title.innerText = "Berhasil!";
+    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="green" width="48" height="48">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>`;
   } else {
-    popup.classList.remove("success");
-    popup.classList.add("error");
-    icon.innerHTML = `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <line x1="20" y1="20" x2="80" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>
-  <line x1="80" y1="20" x2="20" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>
-</svg>`;
     title.innerText = "Oops...";
+    icon.innerHTML = `<svg viewBox="0 0 24 24" fill="red" width="48" height="48">
+      <line x1="5" y1="5" x2="19" y2="19" stroke="red" stroke-width="2" stroke-linecap="round"/>
+      <line x1="19" y1="5" x2="5" y2="19" stroke="red" stroke-width="2" stroke-linecap="round"/>
+    </svg>`;
   }
 
   popup.classList.remove("hidden");
 }
 
-function closePopup() {
-  document.getElementById("popup-alert").classList.add("hidden");
-}
+function closeContactPopup() {
+  document.getElementById("contact-popup").classList.add("hidden");
+      }
