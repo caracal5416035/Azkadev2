@@ -162,15 +162,15 @@
   const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee"; 
 
   container.insertAdjacentHTML("beforeend", `
-    <div class="bg-card p-3 rounded-md relative mt-4 transition-transform duration-200" 
+    <div class="bg-card pt-1.5 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200" 
         style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">
       <div class="flex items-center gap-2 mb-2 text-accent font-semibold">
-        <span style="color:${nameColor}">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>
+        <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>
         ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}
         ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}
       </div>
-      <p style="color:#fff; font-family:'calibri'; margin-left: 3px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>
-      <div class="mt-2 text-xs text-gray-400 text-right">${item.waktu}</div>
+      <p style="color:#fff; font-family:'calibri'; margin-left: 4px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>
+      <div class="mt-3 text-xs text-gray-400 text-right">${item.waktu}</div>
     </div>
   `);
 });
@@ -193,3 +193,4 @@
 </script>
 </body>
 </html>
+
