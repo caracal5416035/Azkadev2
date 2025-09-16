@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -16,7 +17,7 @@
   font-style: normal;
 }
     </style>
-  <script src="menu.js"></script>
+  <script src="https://azkaarrodhi.vercel.app/menu.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -46,6 +47,18 @@
   </button>
 </div>
 -->
+  <div id="data-container"></div>
+
+<!-- Spinner awal -->
+<div id="spinner-main" class="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+  <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+</div>
+
+<!-- Spinner bawah -->
+<div id="spinner-bottom" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+  <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+</div>
+  
    <div class="grid gap-6">
       
 <div class="grid gap-3" id="data-container">
@@ -63,7 +76,120 @@
   </div>  
   </div>
 
-<script src="data-aos.js"></script>
-<script type="module" src="script.js"></script>
+<script src="https://azkaarrodhi.vercel.app/data-aos.js"></script>
+   <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { 
+    getFirestore, collection, query, orderBy, limit, startAfter, getDocs 
+  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  // Konfigurasi Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
+    authDomain: "website-61783.firebaseapp.com",
+    projectId: "website-61783",
+    storageBucket: "website-61783.firebasestorage.app",
+    messagingSenderId: "437361977695",
+    appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
+    measurementId: "G-0X5NV4YK2V"
+  };
+
+  // Inisialisasi App & Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const container = document.getElementById("data-container");
+  const pageSize = 10;
+  let lastDoc = null;
+  let isLoading = false;
+  let noMoreData = false;
+
+  // Fungsi escape untuk mencegah XSS
+  function escapeHTML(str) {
+    if (!str) return "";
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+ async function loadKomentar(initial = false) {
+  if (isLoading || noMoreData) return;
+  isLoading = true;
+
+  // tampilkan spinner
+  if (initial) {
+    document.getElementById("spinner-main").classList.remove("hidden");
+  } else {
+    document.getElementById("spinner-bottom").classList.remove("hidden");
+  }
+
+  try {
+    let q;
+    if (lastDoc) {
+      q = query(
+        collection(db, "uploads"),
+        orderBy("waktu", "desc"),
+        startAfter(lastDoc),
+        limit(pageSize)
+      );
+    } else {
+      q = query(
+        collection(db, "uploads"),
+        orderBy("waktu", "desc"),
+        limit(pageSize)
+      );
+    }
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      noMoreData = true;
+      if (!initial) {
+        document.getElementById("spinner-bottom").innerHTML = 
+          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;
+      }
+      return;
+    }
+
+   snapshot.forEach(doc => {
+  const item = doc.data();
+
+  // Warna dinamis
+  const borderColor = item.bahaya ? "#ef4444" : "#1c86ee"; 
+  const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee"; 
+
+  container.insertAdjacentHTML("beforeend", `
+    <div class="bg-card p-3 rounded-md relative mt-4 transition-transform duration-200" 
+        style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">
+      <div class="flex items-center gap-2 mb-2 text-accent font-semibold">
+        <span style="color:${nameColor}">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>
+        ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}
+        ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}
+      </div>
+      <p style="color:#fff; font-family:'calibri'; margin-left: 3px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>
+      <div class="mt-2 text-xs text-gray-400 text-right">${item.waktu}</div>
+    </div>
+  `);
+});
+    lastDoc = snapshot.docs[snapshot.docs.length - 1];
+  } finally {
+    isLoading = false;
+    document.getElementById("spinner-main").classList.add("hidden");
+    document.getElementById("spinner-bottom").classList.add("hidden");
+  }
+}
+  // Load pertama
+  loadKomentar(true);
+
+  // Infinite scroll
+  window.addEventListener("scroll", () => {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+      loadKomentar();
+    }
+  });
+</script>
 </body>
 </html>
