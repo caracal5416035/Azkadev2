@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="manifest" href="/manifest.json" />
+<meta name="author" content="Azka Arrodhi" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Language" content="id" />
+
+<link rel="canonical" href="https://azkaarrodhi.vercel.app" />
+
+<meta property="og:title" content="Azka Arrodhi" />
+<meta property="og:description" content="Hello, I’m Azka. &#128102;&#127995; Here you can see what I’m working on &#128187; and information that might be useful for you &#128218;." />
+<meta property="og:image" content="/20250210_161152-v2.png" />
+<meta property="og:url" content="https://azkaarrodhi.vercel.app/" />
+<meta property="og:type" content="website" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Azka Arrodhi" />
+<meta name="twitter:description" content="Hey, I’m Azka. &#128102;&#127995; This is the place where you can find out what I’m working on &#128187;, the stuff I’m interested in &#127912;, and useful info that might help you &#128218;. If you have any questions or want to chat, just reach out, I’m easy to talk to &#128522;." />
+<meta name="twitter:image" content="/20250210_161152-v2.png" />
+<script>
+  function hexToRgb(e){var a=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;e=e.replace(a,function(e,a,t,i){return a+a+t+t+i+i});var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function clamp(e,a,t){return Math.min(Math.max(e,a),t)}function isInArray(e,a){return a.indexOf(e)>-1}var pJS=function(e,a){var t=document.querySelector("#"+e+" > .particles-js-canvas-el");this.pJS={canvas:{el:t,w:t.offsetWidth,h:t.offsetHeight},particles:{number:{value:400,density:{enable:!0,value_area:800}},color:{value:"#fff"},shape:{type:"circle",stroke:{width:0,color:"#ff0000"},polygon:{nb_sides:5},image:{src:"",width:100,height:100}},opacity:{value:1,random:!1,anim:{enable:!1,speed:2,opacity_min:0,sync:!1}},size:{value:20,random:!1,anim:{enable:!1,speed:20,size_min:0,sync:!1}},line_linked:{enable:!0,distance:100,color:"#fff",opacity:1,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:3e3,rotateY:3e3}},array:[]},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:100,line_linked:{opacity:1}},bubble:{distance:200,size:80,duration:.4},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}},mouse:{}},retina_detect:!1,fn:{interact:{},modes:{},vendors:{}},tmp:{}};var i=this.pJS;a&&Object.deepExtend(i,a),i.tmp.obj={size_value:i.particles.size.value,size_anim_speed:i.particles.size.anim.speed,move_speed:i.particles.move.speed,line_linked_distance:i.particles.line_linked.distance,line_linked_width:i.particles.line_linked.width,mode_grab_distance:i.interactivity.modes.grab.distance,mode_bubble_distance:i.interactivity.modes.bubble.distance,mode_bubble_size:i.interactivity.modes.bubble.size,mode_repulse_distance:i.interactivity.modes.repulse.distance},i.fn.retinaInit=function(){i.retina_detect&&window.devicePixelRatio>1?(i.canvas.pxratio=window.devicePixelRatio,i.tmp.retina=!0):(i.canvas.pxratio=1,i.tmp.retina=!1),i.canvas.w=i.canvas.el.offsetWidth*i.canvas.pxratio,i.canvas.h=i.canvas.el.offsetHeight*i.canvas.pxratio,i.particles.size.value=i.tmp.obj.size_value*i.canvas.pxratio,i.particles.size.anim.speed=i.tmp.obj.size_anim_speed*i.canvas.pxratio,i.particles.move.speed=i.tmp.obj.move_speed*i.canvas.pxratio,i.particles.line_linked.distance=i.tmp.obj.line_linked_distance*i.canvas.pxratio,i.interactivity.modes.grab.distance=i.tmp.obj.mode_grab_distance*i.canvas.pxratio,i.interactivity.modes.bubble.distance=i.tmp.obj.mode_bubble_distance*i.canvas.pxratio,i.particles.line_linked.width=i.tmp.obj.line_linked_width*i.canvas.pxratio,i.interactivity.modes.bubble.size=i.tmp.obj.mode_bubble_size*i.canvas.pxratio,i.interactivity.modes.repulse.distance=i.tmp.obj.mode_repulse_distance*i.canvas.pxratio},i.fn.canvasInit=function(){i.canvas.ctx=i.canvas.el.getContext("2d")},i.fn.canvasSize=function(){i.canvas.el.width=i.canvas.w,i.canvas.el.height=i.canvas.h,i&&i.interactivity.events.resize&&window.addEventListener("resize",function(){i.canvas.w=i.canvas.el.offsetWidth,i.canvas.h=i.canvas.el.offsetHeight,i.tmp.retina&&(i.canvas.w*=i.canvas.pxratio,i.canvas.h*=i.canvas.pxratio),i.canvas.el.width=i.canvas.w,i.canvas.el.height=i.canvas.h,i.particles.move.enable||(i.fn.particlesEmpty(),i.fn.particlesCreate(),i.fn.particlesDraw(),i.fn.vendors.densityAutoParticles()),i.fn.vendors.densityAutoParticles()})},i.fn.canvasPaint=function(){i.canvas.ctx.fillRect(0,0,i.canvas.w,i.canvas.h)},i.fn.canvasClear=function(){i.canvas.ctx.clearRect(0,0,i.canvas.w,i.canvas.h)},i.fn.particle=function(e,a,t){if(this.radius=(i.particles.size.random?Math.random():1)*i.particles.size.value,i.particles.size.anim.enable&&(this.size_status=!1,this.vs=i.particles.size.anim.speed/100,i.particles.size.anim.sync||(this.vs=this.vs*Math.random())),this.x=t?t.x:Math.random()*i.canvas.w,this.y=t?t.y:Math.random()*i.canvas.h,this.x>i.canvas.w-2*this.radius?this.x=this.x-this.radius:this.x<2*this.radius&&(this.x=this.x+this.radius),this.y>i.canvas.h-2*this.radius?this.y=this.y-this.radius:this.y<2*this.radius&&(this.y=this.y+this.radius),i.particles.move.bounce&&i.fn.vendors.checkOverlap(this,t),this.color={},"object"==typeof e.value)if(e.value instanceof Array){var s=e.value[Math.floor(Math.random()*i.particles.color.value.length)];this.color.rgb=hexToRgb(s)}else void 0!=e.value.r&&void 0!=e.value.g&&void 0!=e.value.b&&(this.color.rgb={r:e.value.r,g:e.value.g,b:e.value.b}),void 0!=e.value.h&&void 0!=e.value.s&&void 0!=e.value.l&&(this.color.hsl={h:e.value.h,s:e.value.s,l:e.value.l});else"random"==e.value?this.color.rgb={r:Math.floor(256*Math.random())+0,g:Math.floor(256*Math.random())+0,b:Math.floor(256*Math.random())+0}:"string"==typeof e.value&&(this.color=e,this.color.rgb=hexToRgb(this.color.value));this.opacity=(i.particles.opacity.random?Math.random():1)*i.particles.opacity.value,i.particles.opacity.anim.enable&&(this.opacity_status=!1,this.vo=i.particles.opacity.anim.speed/100,i.particles.opacity.anim.sync||(this.vo=this.vo*Math.random()));var n={};switch(i.particles.move.direction){case"top":n={x:0,y:-1};break;case"top-right":n={x:.5,y:-.5};break;case"right":n={x:1,y:-0};break;case"bottom-right":n={x:.5,y:.5};break;case"bottom":n={x:0,y:1};break;case"bottom-left":n={x:-.5,y:1};break;case"left":n={x:-1,y:0};break;case"top-left":n={x:-.5,y:-.5};break;default:n={x:0,y:0}}i.particles.move.straight?(this.vx=n.x,this.vy=n.y,i.particles.move.random&&(this.vx=this.vx*Math.random(),this.vy=this.vy*Math.random())):(this.vx=n.x+Math.random()-.5,this.vy=n.y+Math.random()-.5),this.vx_i=this.vx,this.vy_i=this.vy;var r=i.particles.shape.type;if("object"==typeof r){if(r instanceof Array){var c=r[Math.floor(Math.random()*r.length)];this.shape=c}}else this.shape=r;if("image"==this.shape){var o=i.particles.shape;this.img={src:o.image.src,ratio:o.image.width/o.image.height},this.img.ratio||(this.img.ratio=1),"svg"==i.tmp.img_type&&void 0!=i.tmp.source_svg&&(i.fn.vendors.createSvgImg(this),i.tmp.pushing&&(this.img.loaded=!1))}},i.fn.particle.prototype.draw=function(){function e(){i.canvas.ctx.drawImage(r,a.x-t,a.y-t,2*t,2*t/a.img.ratio)}var a=this;if(void 0!=a.radius_bubble)var t=a.radius_bubble;else var t=a.radius;if(void 0!=a.opacity_bubble)var s=a.opacity_bubble;else var s=a.opacity;if(a.color.rgb)var n="rgba("+a.color.rgb.r+","+a.color.rgb.g+","+a.color.rgb.b+","+s+")";else var n="hsla("+a.color.hsl.h+","+a.color.hsl.s+"%,"+a.color.hsl.l+"%,"+s+")";switch(i.canvas.ctx.fillStyle=n,i.canvas.ctx.beginPath(),a.shape){case"circle":i.canvas.ctx.arc(a.x,a.y,t,0,2*Math.PI,!1);break;case"edge":i.canvas.ctx.rect(a.x-t,a.y-t,2*t,2*t);break;case"triangle":i.fn.vendors.drawShape(i.canvas.ctx,a.x-t,a.y+t/1.66,2*t,3,2);break;case"polygon":i.fn.vendors.drawShape(i.canvas.ctx,a.x-t/(i.particles.shape.polygon.nb_sides/3.5),a.y-t/.76,2.66*t/(i.particles.shape.polygon.nb_sides/3),i.particles.shape.polygon.nb_sides,1);break;case"star":i.fn.vendors.drawShape(i.canvas.ctx,a.x-2*t/(i.particles.shape.polygon.nb_sides/4),a.y-t/1.52,2*t*2.66/(i.particles.shape.polygon.nb_sides/3),i.particles.shape.polygon.nb_sides,2);break;case"image":if("svg"==i.tmp.img_type)var r=a.img.obj;else var r=i.tmp.img_obj;r&&e()}i.canvas.ctx.closePath(),i.particles.shape.stroke.width>0&&(i.canvas.ctx.strokeStyle=i.particles.shape.stroke.color,i.canvas.ctx.lineWidth=i.particles.shape.stroke.width,i.canvas.ctx.stroke()),i.canvas.ctx.fill()},i.fn.particlesCreate=function(){for(var e=0;e<i.particles.number.value;e++)i.particles.array.push(new i.fn.particle(i.particles.color,i.particles.opacity.value))},i.fn.particlesUpdate=function(){for(var e=0;e<i.particles.array.length;e++){var a=i.particles.array[e];if(i.particles.move.enable){var t=i.particles.move.speed/2;a.x+=a.vx*t,a.y+=a.vy*t}if(i.particles.opacity.anim.enable&&(1==a.opacity_status?(a.opacity>=i.particles.opacity.value&&(a.opacity_status=!1),a.opacity+=a.vo):(a.opacity<=i.particles.opacity.anim.opacity_min&&(a.opacity_status=!0),a.opacity-=a.vo),a.opacity<0&&(a.opacity=0)),i.particles.size.anim.enable&&(1==a.size_status?(a.radius>=i.particles.size.value&&(a.size_status=!1),a.radius+=a.vs):(a.radius<=i.particles.size.anim.size_min&&(a.size_status=!0),a.radius-=a.vs),a.radius<0&&(a.radius=0)),"bounce"==i.particles.move.out_mode)var s={x_left:a.radius,x_right:i.canvas.w,y_top:a.radius,y_bottom:i.canvas.h};else var s={x_left:-a.radius,x_right:i.canvas.w+a.radius,y_top:-a.radius,y_bottom:i.canvas.h+a.radius};switch(a.x-a.radius>i.canvas.w?(a.x=s.x_left,a.y=Math.random()*i.canvas.h):a.x+a.radius<0&&(a.x=s.x_right,a.y=Math.random()*i.canvas.h),a.y-a.radius>i.canvas.h?(a.y=s.y_top,a.x=Math.random()*i.canvas.w):a.y+a.radius<0&&(a.y=s.y_bottom,a.x=Math.random()*i.canvas.w),i.particles.move.out_mode){case"bounce":a.x+a.radius>i.canvas.w?a.vx=-a.vx:a.x-a.radius<0&&(a.vx=-a.vx),a.y+a.radius>i.canvas.h?a.vy=-a.vy:a.y-a.radius<0&&(a.vy=-a.vy)}if(isInArray("grab",i.interactivity.events.onhover.mode)&&i.fn.modes.grabParticle(a),(isInArray("bubble",i.interactivity.events.onhover.mode)||isInArray("bubble",i.interactivity.events.onclick.mode))&&i.fn.modes.bubbleParticle(a),(isInArray("repulse",i.interactivity.events.onhover.mode)||isInArray("repulse",i.interactivity.events.onclick.mode))&&i.fn.modes.repulseParticle(a),i.particles.line_linked.enable||i.particles.move.attract.enable)for(var n=e+1;n<i.particles.array.length;n++){var r=i.particles.array[n];i.particles.line_linked.enable&&i.fn.interact.linkParticles(a,r),i.particles.move.attract.enable&&i.fn.interact.attractParticles(a,r),i.particles.move.bounce&&i.fn.interact.bounceParticles(a,r)}}},i.fn.particlesDraw=function(){i.canvas.ctx.clearRect(0,0,i.canvas.w,i.canvas.h),i.fn.particlesUpdate();for(var e=0;e<i.particles.array.length;e++){var a=i.particles.array[e];a.draw()}},i.fn.particlesEmpty=function(){i.particles.array=[]},i.fn.particlesRefresh=function(){cancelRequestAnimFrame(i.fn.checkAnimFrame),cancelRequestAnimFrame(i.fn.drawAnimFrame),i.tmp.source_svg=void 0,i.tmp.img_obj=void 0,i.tmp.count_svg=0,i.fn.particlesEmpty(),i.fn.canvasClear(),i.fn.vendors.start()},i.fn.interact.linkParticles=function(e,a){var t=e.x-a.x,s=e.y-a.y,n=Math.sqrt(t*t+s*s);if(n<=i.particles.line_linked.distance){var r=i.particles.line_linked.opacity-n/(1/i.particles.line_linked.opacity)/i.particles.line_linked.distance;if(r>0){var c=i.particles.line_linked.color_rgb_line;i.canvas.ctx.strokeStyle="rgba("+c.r+","+c.g+","+c.b+","+r+")",i.canvas.ctx.lineWidth=i.particles.line_linked.width,i.canvas.ctx.beginPath(),i.canvas.ctx.moveTo(e.x,e.y),i.canvas.ctx.lineTo(a.x,a.y),i.canvas.ctx.stroke(),i.canvas.ctx.closePath()}}},i.fn.interact.attractParticles=function(e,a){var t=e.x-a.x,s=e.y-a.y,n=Math.sqrt(t*t+s*s);if(n<=i.particles.line_linked.distance){var r=t/(1e3*i.particles.move.attract.rotateX),c=s/(1e3*i.particles.move.attract.rotateY);e.vx-=r,e.vy-=c,a.vx+=r,a.vy+=c}},i.fn.interact.bounceParticles=function(e,a){var t=e.x-a.x,i=e.y-a.y,s=Math.sqrt(t*t+i*i),n=e.radius+a.radius;n>=s&&(e.vx=-e.vx,e.vy=-e.vy,a.vx=-a.vx,a.vy=-a.vy)},i.fn.modes.pushParticles=function(e,a){i.tmp.pushing=!0;for(var t=0;e>t;t++)i.particles.array.push(new i.fn.particle(i.particles.color,i.particles.opacity.value,{x:a?a.pos_x:Math.random()*i.canvas.w,y:a?a.pos_y:Math.random()*i.canvas.h})),t==e-1&&(i.particles.move.enable||i.fn.particlesDraw(),i.tmp.pushing=!1)},i.fn.modes.removeParticles=function(e){i.particles.array.splice(0,e),i.particles.move.enable||i.fn.particlesDraw()},i.fn.modes.bubbleParticle=function(e){function a(){e.opacity_bubble=e.opacity,e.radius_bubble=e.radius}function t(a,t,s,n,c){if(a!=t)if(i.tmp.bubble_duration_end){if(void 0!=s){var o=n-p*(n-a)/i.interactivity.modes.bubble.duration,l=a-o;d=a+l,"size"==c&&(e.radius_bubble=d),"opacity"==c&&(e.opacity_bubble=d)}}else if(r<=i.interactivity.modes.bubble.distance){if(void 0!=s)var v=s;else var v=n;if(v!=a){var d=n-p*(n-a)/i.interactivity.modes.bubble.duration;"size"==c&&(e.radius_bubble=d),"opacity"==c&&(e.opacity_bubble=d)}}else"size"==c&&(e.radius_bubble=void 0),"opacity"==c&&(e.opacity_bubble=void 0)}if(i.interactivity.events.onhover.enable&&isInArray("bubble",i.interactivity.events.onhover.mode)){var s=e.x-i.interactivity.mouse.pos_x,n=e.y-i.interactivity.mouse.pos_y,r=Math.sqrt(s*s+n*n),c=1-r/i.interactivity.modes.bubble.distance;if(r<=i.interactivity.modes.bubble.distance){if(c>=0&&"mousemove"==i.interactivity.status){if(i.interactivity.modes.bubble.size!=i.particles.size.value)if(i.interactivity.modes.bubble.size>i.particles.size.value){var o=e.radius+i.interactivity.modes.bubble.size*c;o>=0&&(e.radius_bubble=o)}else{var l=e.radius-i.interactivity.modes.bubble.size,o=e.radius-l*c;o>0?e.radius_bubble=o:e.radius_bubble=0}if(i.interactivity.modes.bubble.opacity!=i.particles.opacity.value)if(i.interactivity.modes.bubble.opacity>i.particles.opacity.value){var v=i.interactivity.modes.bubble.opacity*c;v>e.opacity&&v<=i.interactivity.modes.bubble.opacity&&(e.opacity_bubble=v)}else{var v=e.opacity-(i.particles.opacity.value-i.interactivity.modes.bubble.opacity)*c;v<e.opacity&&v>=i.interactivity.modes.bubble.opacity&&(e.opacity_bubble=v)}}}else a();"mouseleave"==i.interactivity.status&&a()}else if(i.interactivity.events.onclick.enable&&isInArray("bubble",i.interactivity.events.onclick.mode)){if(i.tmp.bubble_clicking){var s=e.x-i.interactivity.mouse.click_pos_x,n=e.y-i.interactivity.mouse.click_pos_y,r=Math.sqrt(s*s+n*n),p=((new Date).getTime()-i.interactivity.mouse.click_time)/1e3;p>i.interactivity.modes.bubble.duration&&(i.tmp.bubble_duration_end=!0),p>2*i.interactivity.modes.bubble.duration&&(i.tmp.bubble_clicking=!1,i.tmp.bubble_duration_end=!1)}i.tmp.bubble_clicking&&(t(i.interactivity.modes.bubble.size,i.particles.size.value,e.radius_bubble,e.radius,"size"),t(i.interactivity.modes.bubble.opacity,i.particles.opacity.value,e.opacity_bubble,e.opacity,"opacity"))}},i.fn.modes.repulseParticle=function(e){function a(){var a=Math.atan2(d,p);if(e.vx=u*Math.cos(a),e.vy=u*Math.sin(a),"bounce"==i.particles.move.out_mode){var t={x:e.x+e.vx,y:e.y+e.vy};t.x+e.radius>i.canvas.w?e.vx=-e.vx:t.x-e.radius<0&&(e.vx=-e.vx),t.y+e.radius>i.canvas.h?e.vy=-e.vy:t.y-e.radius<0&&(e.vy=-e.vy)}}if(i.interactivity.events.onhover.enable&&isInArray("repulse",i.interactivity.events.onhover.mode)&&"mousemove"==i.interactivity.status){var t=e.x-i.interactivity.mouse.pos_x,s=e.y-i.interactivity.mouse.pos_y,n=Math.sqrt(t*t+s*s),r={x:t/n,y:s/n},c=i.interactivity.modes.repulse.distance,o=100,l=clamp(1/c*(-1*Math.pow(n/c,2)+1)*c*o,0,50),v={x:e.x+r.x*l,y:e.y+r.y*l};"bounce"==i.particles.move.out_mode?(v.x-e.radius>0&&v.x+e.radius<i.canvas.w&&(e.x=v.x),v.y-e.radius>0&&v.y+e.radius<i.canvas.h&&(e.y=v.y)):(e.x=v.x,e.y=v.y)}else if(i.interactivity.events.onclick.enable&&isInArray("repulse",i.interactivity.events.onclick.mode))if(i.tmp.repulse_finish||(i.tmp.repulse_count++,i.tmp.repulse_count==i.particles.array.length&&(i.tmp.repulse_finish=!0)),i.tmp.repulse_clicking){var c=Math.pow(i.interactivity.modes.repulse.distance/6,3),p=i.interactivity.mouse.click_pos_x-e.x,d=i.interactivity.mouse.click_pos_y-e.y,m=p*p+d*d,u=-c/m*1;c>=m&&a()}else 0==i.tmp.repulse_clicking&&(e.vx=e.vx_i,e.vy=e.vy_i)},i.fn.modes.grabParticle=function(e){if(i.interactivity.events.onhover.enable&&"mousemove"==i.interactivity.status){var a=e.x-i.interactivity.mouse.pos_x,t=e.y-i.interactivity.mouse.pos_y,s=Math.sqrt(a*a+t*t);if(s<=i.interactivity.modes.grab.distance){var n=i.interactivity.modes.grab.line_linked.opacity-s/(1/i.interactivity.modes.grab.line_linked.opacity)/i.interactivity.modes.grab.distance;if(n>0){var r=i.particles.line_linked.color_rgb_line;i.canvas.ctx.strokeStyle="rgba("+r.r+","+r.g+","+r.b+","+n+")",i.canvas.ctx.lineWidth=i.particles.line_linked.width,i.canvas.ctx.beginPath(),i.canvas.ctx.moveTo(e.x,e.y),i.canvas.ctx.lineTo(i.interactivity.mouse.pos_x,i.interactivity.mouse.pos_y),i.canvas.ctx.stroke(),i.canvas.ctx.closePath()}}}},i.fn.vendors.eventsListeners=function(){"window"==i.interactivity.detect_on?i.interactivity.el=window:i.interactivity.el=i.canvas.el,(i.interactivity.events.onhover.enable||i.interactivity.events.onclick.enable)&&(i.interactivity.el.addEventListener("mousemove",function(e){if(i.interactivity.el==window)var a=e.clientX,t=e.clientY;else var a=e.offsetX||e.clientX,t=e.offsetY||e.clientY;i.interactivity.mouse.pos_x=a,i.interactivity.mouse.pos_y=t,i.tmp.retina&&(i.interactivity.mouse.pos_x*=i.canvas.pxratio,i.interactivity.mouse.pos_y*=i.canvas.pxratio),i.interactivity.status="mousemove"}),i.interactivity.el.addEventListener("mouseleave",function(e){i.interactivity.mouse.pos_x=null,i.interactivity.mouse.pos_y=null,i.interactivity.status="mouseleave"})),i.interactivity.events.onclick.enable&&i.interactivity.el.addEventListener("click",function(){if(i.interactivity.mouse.click_pos_x=i.interactivity.mouse.pos_x,i.interactivity.mouse.click_pos_y=i.interactivity.mouse.pos_y,i.interactivity.mouse.click_time=(new Date).getTime(),i.interactivity.events.onclick.enable)switch(i.interactivity.events.onclick.mode){case"push":i.particles.move.enable?i.fn.modes.pushParticles(i.interactivity.modes.push.particles_nb,i.interactivity.mouse):1==i.interactivity.modes.push.particles_nb?i.fn.modes.pushParticles(i.interactivity.modes.push.particles_nb,i.interactivity.mouse):i.interactivity.modes.push.particles_nb>1&&i.fn.modes.pushParticles(i.interactivity.modes.push.particles_nb);break;case"remove":i.fn.modes.removeParticles(i.interactivity.modes.remove.particles_nb);break;case"bubble":i.tmp.bubble_clicking=!0;break;case"repulse":i.tmp.repulse_clicking=!0,i.tmp.repulse_count=0,i.tmp.repulse_finish=!1,setTimeout(function(){i.tmp.repulse_clicking=!1},1e3*i.interactivity.modes.repulse.duration)}})},i.fn.vendors.densityAutoParticles=function(){if(i.particles.number.density.enable){var e=i.canvas.el.width*i.canvas.el.height/1e3;i.tmp.retina&&(e/=2*i.canvas.pxratio);var a=e*i.particles.number.value/i.particles.number.density.value_area,t=i.particles.array.length-a;0>t?i.fn.modes.pushParticles(Math.abs(t)):i.fn.modes.removeParticles(t)}},i.fn.vendors.checkOverlap=function(e,a){for(var t=0;t<i.particles.array.length;t++){var s=i.particles.array[t],n=e.x-s.x,r=e.y-s.y,c=Math.sqrt(n*n+r*r);c<=e.radius+s.radius&&(e.x=a?a.x:Math.random()*i.canvas.w,e.y=a?a.y:Math.random()*i.canvas.h,i.fn.vendors.checkOverlap(e))}},i.fn.vendors.createSvgImg=function(e){var a=i.tmp.source_svg,t=/#([0-9A-F]{3,6})/gi,s=a.replace(t,function(a,t,i,s){if(e.color.rgb)var n="rgba("+e.color.rgb.r+","+e.color.rgb.g+","+e.color.rgb.b+","+e.opacity+")";else var n="hsla("+e.color.hsl.h+","+e.color.hsl.s+"%,"+e.color.hsl.l+"%,"+e.opacity+")";return n}),n=new Blob([s],{type:"image/svg+xml;charset=utf-8"}),r=window.URL||window.webkitURL||window,c=r.createObjectURL(n),o=new Image;o.addEventListener("load",function(){e.img.obj=o,e.img.loaded=!0,r.revokeObjectURL(c),i.tmp.count_svg++}),o.src=c},i.fn.vendors.destroypJS=function(){cancelAnimationFrame(i.fn.drawAnimFrame),t.remove(),pJSDom=null},i.fn.vendors.drawShape=function(e,a,t,i,s,n){var r=s*n,c=s/n,o=180*(c-2)/c,l=Math.PI-Math.PI*o/180;e.save(),e.beginPath(),e.translate(a,t),e.moveTo(0,0);for(var v=0;r>v;v++)e.lineTo(i,0),e.translate(i,0),e.rotate(l);e.fill(),e.restore()},i.fn.vendors.exportImg=function(){window.open(i.canvas.el.toDataURL("image/png"),"_blank")},i.fn.vendors.loadImg=function(e){if(i.tmp.img_error=void 0,""!=i.particles.shape.image.src)if("svg"==e){var a=new XMLHttpRequest;a.open("GET",i.particles.shape.image.src),a.onreadystatechange=function(e){4==a.readyState&&(200==a.status?(i.tmp.source_svg=e.currentTarget.response,i.fn.vendors.checkBeforeDraw()):(console.log("Error pJS - Image not found"),i.tmp.img_error=!0))},a.send()}else{var t=new Image;t.addEventListener("load",function(){i.tmp.img_obj=t,i.fn.vendors.checkBeforeDraw()}),t.src=i.particles.shape.image.src}else console.log("Error pJS - No image.src"),i.tmp.img_error=!0},i.fn.vendors.draw=function(){"image"==i.particles.shape.type?"svg"==i.tmp.img_type?i.tmp.count_svg>=i.particles.number.value?(i.fn.particlesDraw(),i.particles.move.enable?i.fn.drawAnimFrame=requestAnimFrame(i.fn.vendors.draw):cancelRequestAnimFrame(i.fn.drawAnimFrame)):i.tmp.img_error||(i.fn.drawAnimFrame=requestAnimFrame(i.fn.vendors.draw)):void 0!=i.tmp.img_obj?(i.fn.particlesDraw(),i.particles.move.enable?i.fn.drawAnimFrame=requestAnimFrame(i.fn.vendors.draw):cancelRequestAnimFrame(i.fn.drawAnimFrame)):i.tmp.img_error||(i.fn.drawAnimFrame=requestAnimFrame(i.fn.vendors.draw)):(i.fn.particlesDraw(),i.particles.move.enable?i.fn.drawAnimFrame=requestAnimFrame(i.fn.vendors.draw):cancelRequestAnimFrame(i.fn.drawAnimFrame))},i.fn.vendors.checkBeforeDraw=function(){"image"==i.particles.shape.type?"svg"==i.tmp.img_type&&void 0==i.tmp.source_svg?i.tmp.checkAnimFrame=requestAnimFrame(check):(cancelRequestAnimFrame(i.tmp.checkAnimFrame),i.tmp.img_error||(i.fn.vendors.init(),i.fn.vendors.draw())):(i.fn.vendors.init(),i.fn.vendors.draw())},i.fn.vendors.init=function(){i.fn.retinaInit(),i.fn.canvasInit(),i.fn.canvasSize(),i.fn.canvasPaint(),i.fn.particlesCreate(),i.fn.vendors.densityAutoParticles(),i.particles.line_linked.color_rgb_line=hexToRgb(i.particles.line_linked.color)},i.fn.vendors.start=function(){isInArray("image",i.particles.shape.type)?(i.tmp.img_type=i.particles.shape.image.src.substr(i.particles.shape.image.src.length-3),i.fn.vendors.loadImg(i.tmp.img_type)):i.fn.vendors.checkBeforeDraw()},i.fn.vendors.eventsListeners(),i.fn.vendors.start()};Object.deepExtend=function(e,a){for(var t in a)a[t]&&a[t].constructor&&a[t].constructor===Object?(e[t]=e[t]||{},arguments.callee(e[t],a[t])):e[t]=a[t];return e},window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(e){window.setTimeout(e,1e3/60)}}(),window.cancelRequestAnimFrame=function(){return window.cancelAnimationFrame||window.webkitCancelRequestAnimationFrame||window.mozCancelRequestAnimationFrame||window.oCancelRequestAnimationFrame||window.msCancelRequestAnimationFrame||clearTimeout}(),window.pJSDom=[],window.particlesJS=function(e,a){"string"!=typeof e&&(a=e,e="particles-js"),e||(e="particles-js");var t=document.getElementById(e),i="particles-js-canvas-el",s=t.getElementsByClassName(i);if(s.length)for(;s.length>0;)t.removeChild(s[0]);var n=document.createElement("canvas");n.className=i,n.style.width="100%",n.style.height="100%";var r=document.getElementById(e).appendChild(n);null!=r&&pJSDom.push(new pJS(e,a))},window.particlesJS.load=function(e,a,t){var i=new XMLHttpRequest;i.open("GET",a),i.onreadystatechange=function(a){if(4==i.readyState)if(200==i.status){var s=JSON.parse(a.currentTarget.response);window.particlesJS(e,s),t&&t()}else console.log("Error pJS - XMLHttpRequest status: "+i.status),console.log("Error pJS - File config not found")},i.send()};
+ </script>
+<script src="menu.js"></script>
+<link rel="icon" href="/20250210_161152-v2.png" type="image/png">
+<meta property="og:type" content="personal website">
+ <meta name="theme-color" content="#1C2324">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;600&family=Carattere&family=Indie+Flower&display=swap" rel="stylesheet">
+ <meta name="keywords" content="azka, azka arrodhi, Muhammad azka arrodhi, Portofolio, Website Azka, Azkaarrodhi, Azka Arrodhi, AzkaDev">
+<meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="https://azkafonts.vercel.app/css/all.min.css">
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Azka Arrodhi</title>
+  <script src="aos.js"></script>
+  <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="animation.css">
+   <script>
+   tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563eb',
+            background: '#111',
+            surface: '#1e293b',
+            muted: '#64748b',
+            error: '#ef4444',
+          },
+        },
+      },
+    }
+  
+   </script>
+  <script src="file.js"></script>
+</head>
+<body translate="no" oncontextmenu="return false;">
+ <div id="particles-js" style="position: fixed; width: 130%; height: 108%; z-index: -1; margin-top: -48px; right: -50px; pointer-events: none;"></div>
+
+     <div id="loading" class="fixed inset-0 bg-background bg-opacity-90 flex items-center justify-center z-50 hidden" style="pointer-events: all none; z-index: 20000; backdrop-filter: blur(10px); height: 140dvh;">
+  <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-primary border-opacity-75 mt-[-13rem]"></div>
+</div>
+<header id="main">
+  <div class="site-title" aria-label="Site title">Azka&#8201;AR.</div>
+  <div style="display: flex;">
+      <a id="fullscreen-btn"><i style="font-size: 20px; margin-top: 1.6px; color: #fff; margin-right: 20px;" class="fas fa-up-right-and-down-left-from-center" id="fullscreen-icon"></i></a>
+    <button class="menu-button" aria-label="Open menu" aria-haspopup="true" aria-expanded="false" id="menu-btn"><i class="fas fa-bars" id="menu-icon" style="font-size: 24px; color: #fff; margin: 0;"></i></button>
+</div>
+ <style>
+.overlay {
+      
+      position: fixed;
+      top: 0; left: 0;
+      width: 100dvw; 
+     height: 140dvh;
+      background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(40px);
+      display: none;
+      z-index: 999;
+    pointer-events: none;
+    overflow: hidden;
+    }
+
+    /* Pop-up */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: transparent;
+      padding: 0px;
+      border-radius: 16px;
+      
+      display: none;
+      z-index: 1000;
+      max-height: 70dvh;
+      width: 80%;
+     max-width: 380px;
+      opacity: 0;
+    }
+
+   
+
+    /* Animasi muncul */
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    /* Animasi hilang */
+    @keyframes fadeOutZoom {
+      from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+      }
+    }
+
+    .popup.show {
+      display: block;
+      animation: fadeInZoom 0.4s ease forwards;
+    }
+
+    .popup.hide {
+      animation: fadeOutZoom 0.4s ease forwards;
+    }
+
+    .overlay.show {
+      display: block;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .overlay.hide {
+      animation: fadeOut 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+.video-wrapper {
+  position: relative;
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
+ max-width: 380px;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.watermark {
+  position: absolute;
+  bottom: 10px;
+  right: 23px;
+  font-family: "Carattere", cursive;
+  font-size: 2.05rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  pointer-events: none;
+  }
+
+  
+
+  
+ .progress-bar {
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: attr(data-percentage) '%';
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.progress-bar.show-label::after {
+  opacity: 1;
+}
+  
+   @keyframes rotateIcon {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.menu-button i {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.menu-button.animate-icon i {
+  animation: rotateIcon 0.6s ease forwards;
+}
+
+  .bubble {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(28, 134, 238, 0.5);
+    pointer-events: none;
+    animation: bubble-fade 0.4s ease-out forwards;
+    z-index: 9999;
+  }
+
+  @keyframes bubble-fade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+
+  .bulat2 {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 15px;
+}
+.bulat2 a i {
+  line-height: 1;
+  display: block;
+}
+.bulat2 a {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+
+  padding: 0px !important;
+  display: flex;
+  box-sizing: border-box;
+overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: deepskyblue;
+  font-size: 14px;
+  border: none;
+box-shadow: 0 0 0 1px deepskyblue;
+  transition: 0.3s;
+}
+
+.bulat2 a:hover {
+  background-color: deepskyblue;
+  color: #fff;
+}
+  
+  
+  
+ </style>
+</header>
+
+   <script>
+   const menuBtn = document.querySelector('.menu-button');
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.remove('animate-icon');
+  void menuBtn.offsetWidth;
+  menuBtn.classList.add('animate-icon');
+  const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+  menuBtn.setAttribute('aria-expanded', !expanded);
+});
+   </script>
+<div id="side-nav-backdrop" class="side-nav-backdrop" tabindex="-1"></div>
+    
+<nav id="side-menu" class="side-menu" role="navigation" aria-label="Primary navigation" aria-expanded="false">
+   <div style="margin-top: -40px; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <style>
+  .bulat {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 15px;
+}
+.social-icons a i {
+  line-height: 1;
+  display: block;
+}
+.bulat a {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #1A242B;
+
+  padding: 0px !important;
+  display: flex;
+  box-sizing: border-box;
+overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  border: none;
+box-shadow: 0 0 0 1px #ccc;
+  transition: 0.3s;
+}
+
+.bulat a:hover {
+  background-color: #;
+  color: white;
+}
+  </style>
+    <img style="border-radius: 50%; margin: 10px auto; width: 60%; box-shadow: 0 0 5px deepskyblue;" src="1739607025145.jpg" alt="Portrait photo of Your Name" />
+    <h1 style="font-weight: 530; font-size: 25px; color: deepskyblue; font-family: 'Arvo', serif;">Azka Arrodhi</h1>
+<div class="bulat">
+  <a href="https://tiktok.com/@azkaarrodhi"><i class="fab fa-tiktok"></i></a>
+  <a href="https://instagram.com/azkaarrodhi"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/fb.azka/"><i class="fab fa-facebook"></i></a>
+  <a href="https://github.com/azkaarrodhi"><i class="fab fa-github"></i></a>
+</div>
+   </div>  <a href="#hero" style="border-top: 1px solid rgba(255,255,255,0.25);" tabindex="-1" style=""><i class="fas fa-house" style="margin-right: 9px;"></i> <span class="hidden">Home</span></a>
+  <a href="#about" tabindex="-1"><i class="fas fa-user" style="margin-right: 10px; margin-left: 2px;"></i> <span>About</span></a>
+  <a href="#skills" tabindex="-1"><i class="fas fa-gear" style="margin-left: 2px; margin-right: 10px;"></i> <span class="hidden">Skills</span></a>
+  <a href="#projects" tabindex="-1"><i class="fas fa-cubes" style="margin-right: 9px;"></i> <span class="hidden">Projects</span></a>
+  <a href="#reviews" tabindex="-1"><i class="fas fa-comments" style="margin-right: 9px;"></i> <span class="hidden">Comments</span></a>
+  <a href="#contact" tabindex="-1"><i class="fas fa-envelope" style="margin-right: 9px;"></i> <span class="hidden">Contact</span></a>
+   
+
+    <a tabindex="-1" style="pointer-events: none;"></a>
+</nav>
+
+<section id="hero" tabindex="-1" aria-label="Introduction" class="fade-in-top">
+     <div class="photo" tabindex="0" aria-label="Portrait photo of Azka">
+    <img class="c" src=""/>
+ </div>
+  <div class="intro">
+    
+  <h1 id="typing">Muhammad Azka Arrodhi</h1>
+    
+    
+   
+       <p style="margin-top: 15px;">ごく普通の人間として、私は動いたり変化したりするものに興味があります。専門家になろうとしているわけでも、見せびらかそうとしているわけでもなく、ただ物事をゆっくりと、少しずつ、そして一歩一歩楽しみながら理解しようとしているだけです。</p>
+
+   <div class="bulat2">
+  <a href="https://tiktok.com/@azkaarrodhi"><i class="fab fa-tiktok"></i></a>
+  <a href="https://instagram.com/azkaarrodhi"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/fb.azka/"><i class="fab fa-facebook"></i></a>
+  <a href="https://github.com/azkaarrodhi"><i class="fab fa-github"></i></a>
+        </div>
+<div class="flex" style="margin: 0 auto; justify-content: center; gap: 20px; align-items: center;">
+  <a href="#about" class="btn-primary" role="button" aria-label="About Me">About Me</a>
+  <a href="#contact" class="btn-primary" role="button" aria-label="Contact">Contact</a>
+</div>
+  </div>
+
+</section>
+  
+  <script>
+  const btn = document.getElementById('fullscreen-btn');
+const icon = document.getElementById('fullscreen-icon');
+
+btn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    icon.classList.remove('fa-up-right-and-down-left-from-center');
+    icon.classList.add('fa-down-left-and-up-right-to-center');
+  } else {
+    document.exitFullscreen();
+    icon.classList.remove('fa-down-left-and-up-right-to-center');
+    icon.classList.add('fa-up-right-and-down-left-from-center');
+  }
+});
+  </script>
+
+<section id="about" tabindex="-1" aria-label="About me" style="
+  background: #24313B; /*url('/foto/backdrop-elemen.jpg');*/
+  /*background-size: cover;*/
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  max-width: 100%;
+  width: 100%;
+  box-shadow: 0 0px 0px rgba(0,0,0,0.1);
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #111827;
+">
+  <h2 style="
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+    color: #ffff;
+    border-bottom: 3px solid #93c5fd;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+  ">About Me</h2>
+  
+  <img class="fade-in mg" src="profile1.webp" style="
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #dbeafe;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 8px 20px rgba(59,130,246,0.2);
+    transition: transform 0.3s ease;
+  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+
+  <div style="font-size: 1.1rem; line-height: 1.8; font-family: 'Roboto',sans-serif;">
+    <p><b>&#78;&#97;&#109;&#97;&#58;</b> &#77;&#46;&#32;&#65;&#122;&#107;&#97;&#32;&#65;&#114;&#114;&#111;&#100;&#104;&#105;</p>
+    <p><b>&#x55;&#x6D;&#x75;&#x72;&#x3A;</b> <span id="txt"></span> &#x74;&#x61;&#x68;&#x75;&#x6E;</p>
+<p><b>&#x4E;&#x65;&#x67;&#x61;&#x72;&#x61;&#x3A;</b> &#x49;&#x6E;&#x64;&#x6F;&#x6E;&#x65;&#x73;&#x69;&#x61;</p>
+  </div>
+    
+    <button class="btn" id="clickMee"><b>Click Me!</b></button>
+ 
+    <div id="overlay" class="overlay"></div>
+  <div id="popup" class="popup">
+  <div class="video-wrapper">
+    <video id="videoPlayer" preload="auto" poster="foto/poster.jpg">
+      <source src="/video/2025-09-10-215453942.mp4" type="video/mp4">
+    </video>
+    <span class="watermark">Azka</span>
+  </div>
+  </div>
+   <script>
+  const btnn = document.getElementById("clickMee");
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
+const video = document.getElementById("videoPlayer");
+
+btnn.addEventListener("click", () => {
+  video.currentTime = 0;
+  video.muted = false;
+  video.play();      
+
+  popup.style.display = "block";
+  overlay.style.display = "block";
+  popup.classList.add("show");
+  overlay.classList.add("show");
+
+  btnn.disabled = true;
+
+  video.onended = () => {
+    setTimeout(() => {
+      popup.classList.remove("show");
+      popup.classList.add("hide");
+      overlay.classList.remove("show");
+      overlay.classList.add("hide");
+
+      setTimeout(() => {
+        popup.classList.remove("hide");
+        overlay.classList.remove("hide");
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        btnn.disabled = false;
+      }, 600); // durasi animasi hide
+    }, 500); // delay 0.5 detik setelah video selesai
+  };
+});
+</script>
+
+
+  
+<div class="social-links" aria-label="Social media links">
+  <a href="https://tiktok.com/@azkaarrodhi" target="_blank" rel="noopener" aria-label="tiktok" tabindex="0"><i class="scale fab fa-tiktok"></i></a>
+  <a style="margin: 0 12px;" href="https://github.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="github" tabindex="0"><i class="scale fab fa-github"></i></a>
+  <a href="https://instagram.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="instagram" tabindex="0"><i class="scale fab fa-instagram"></i></a>
+</div>
+</section>
+
+<section id="skills" tabindex="-1" aria-label="Skills">
+<div class="flex items-center justify-center my-10">
+<h2 class="m-0 text-3xl font-extrabold bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.8)] animate-pulse">
+  ⚡ IT Skills ⚡
+</h2>
+</div>
+<div class="bg-transparent rounded-lg p-5 w-full" style="box-shadow: 0 0 0px rgba(0,0,0,0.6); max-width: 700px;">
+
+  <!-- Skill Item -->
+  <div class="flex items-center mb-7 mt-2">
+    <img src="html.png" class="w-9 h-9 mr-3" alt="HTML Icon">
+    <div class="w-full">
+      <div class="text-sm font-medium text-white mb-1">HTML</div>
+      <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
+             data-percentage="80" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center mb-7">
+    <img src="css.png" class="w-9 h-9 mr-3" alt="CSS Icon">
+    <div class="w-full">
+      <div class="text-sm font-medium text-white mb-1">CSS</div>
+      <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
+             data-percentage="76" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center mb-7">
+    <img src="js.png" class="w-9 h-9 mr-3" alt="JavaScript Icon">
+    <div class="w-full">
+      <div class="text-sm font-medium text-white mb-1">JavaScript</div>
+      <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
+             data-percentage="15" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center mb-7">
+    <img src="python.png" class="w-9 h-9 mr-3" alt="Python Icon">
+    <div class="w-full">
+      <div class="text-sm font-medium text-white mb-1">Python</div>
+      <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
+             data-percentage="12" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center mb-6">
+    <img src="git.png" class="w-9 h-9 mr-3" alt="Git Icon">
+    <div class="w-full">
+      <div class="text-sm font-medium text-white mb-1">Git</div>
+      <div class="w-full bg-gray-300 rounded-full h-4">
+        <div class="progress-bar h-4 bg-gradient-to-r from-purple-900 to-blue-600 rounded-full text-white text-xs font-semibold flex items-center justify-end pr-2 transition-all"
+             data-percentage="39" style="width: 0%;"></div>
+      </div>
+    </div>
+  </div>
+  
+  
+<div class="flex justify-center items-center space-x-6 mt-12 ml-0">
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS. Code" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    VS. Code
+  </span>
+</div>
+
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    GitHub
+  </span>
+</div>
+
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="cg.png" alt="ChatGPT" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    ChatGPT
+  </span>
+</div>
+
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="canva.png" alt="Canva" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    Canva
+  </span>
+</div>
+
+<div class="relative group scale w-12 aspect-square bg-white rounded-lg flex items-center justify-center transition duration-300 hover:scale-105 hover:shadow-[0_0_10px_#1c86ee]">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" class="w-7 h-7 rounded-md object-contain shadow-[0_0_12px_#ffff]" />
+  <span class="absolute top-full mt-2 px-1.5 py-0.5 text-white bg-[#1c86ee] rounded opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap z-10" style="font-size: 10px;">
+    Firebase
+  </span>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const bars = document.querySelectorAll(".progress-bar");
+
+  function animateBar(bar) {
+    const target = bar.getAttribute("data-percentage");
+    bar.style.width = target + "%";
+
+    // Tampilkan angka setelah animasi selesai
+    setTimeout(() => {
+      bar.classList.add("show-label");
+    }, 1000); // Cocokkan dengan transition-duration di CSS
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const bar = entry.target;
+
+      if (entry.isIntersecting && !bar.classList.contains("animated")) {
+        bar.classList.add("animated");
+        animateBar(bar);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  bars.forEach(bar => observer.observe(bar));
+
+  // Reset saat scroll ke atas atau ke bawah
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const scrollBottom = window.innerHeight + scrollTop >= document.body.scrollHeight - 10;
+
+    if (scrollTop === 0 || scrollBottom) {
+      bars.forEach(bar => {
+        bar.classList.remove("animated", "show-label");
+        bar.style.width = "0%";
+      });
+    }
+  });
+});
+</script>
+
+</section>
+
+<section id="projects" tabindex="-1" aria-label="Projects">
+<h2 class="mt-[10px] mb-[80px] leading-none text-3xl font-extrabold bg-gradient-to-r from-sky-300 via-sky-400 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(147,51,234,0.7)] animate-pulse">
+  🚀 Projects 🚀
+</h2>
+  <div class="projects-grid">
+    <div target="_blank" rel="noopener" class="project-card scale" aria-label="Link to Project One" tabindex="0">
+      <img src="Screenshot_20250912-184624.png" alt="Screenshot of Project One" />
+      <div class="project-content">
+        <div class="project-title">Taskly</div>
+        <div class="project-desc">Project latihan web to-do list untuk menambahkan, menghapus, dan mengelola tugas. dipublish pada 13 September 2025.</div>
+        <div class="project-link"><a href="https://azkaarrodhi.github.io/Taskly">Jelajahi project ini &rarr;</a></div>
+      </div>
+    </div>
+    <div href="https://easyquiz.vercel.app" target="_blank" rel="noopener" class="project-card scale" aria-label="Link to Project Two" tabindex="0">
+      <img src="Screenshot_20250515-093435.jpg" alt="Screenshot of Project Two" />
+      <div class="project-content">
+        <div class="project-title">GForm Quiz</div>
+        <div class="project-desc">terbuat dari google form yang dimodifikasi menjadi sedikit lebih aman. dipublish pada 11 November 2024.</div>
+        <div class="project-link"><a href="https://easyquiz.vercel.app">Jelajahi project ini &rarr;</a></div>
+      </div>
+    </div>
+    <div target="_blank" rel="noopener" class="scale project-card" aria-label="Link to Project Three" tabindex="0">
+      <img src="/ck.jpg" alt="Screenshot of Project Three" />
+      <div class="project-content">
+        <div class="project-title">Cek Khodam</div>
+        <div class="project-desc">Website yang pernah saya buat karena terinspirasi dari TikTok. dipublish pada 16 September 2024.</div>
+        <div class="project-link"><a href="https://azkaarrodhi.github.io/Cek-Khodam">Jelajahi project ini  &rarr;</a></div>
+      </div>
+    </div>
+   <div target="_blank" rel="noopener" class="scale project-card" aria-label="Link to Project Three" tabindex="0">
+      <img src="Screenshot_20250525-081924.jpg" alt="Screenshot of Project Four" />
+      <div class="project-content">
+        <div class="project-title">savepesan</div>
+        <div class="project-desc">Project backend flask untuk mempelajari cara pengiriman data, keamanan, dan penyimpanan data. dipublish pada 25 Mei 2025.</div>
+        <div class="project-link"><a href="https://github.com/azkaarrodhi/savepesan">Jelajahi project ini  &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="reviews" tabindex="-1" aria-label="Ulasan">
+<h2 class="mt-[10px] mb-[40px] text-center leading-none text-2xl font-extrabold bg-gradient-to-r from-sky-300 via-sky-400 to-green-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.8)] animate-pulse flex items-center justify-center gap-3">
+  <i class="fas fa-comments text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]"></i>
+  Comments
+  <i class="fas fa-comments text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]"></i>
+</h2>
+  <h3></h3>
+  <iframe src="comment.html" class="fr"></iframe>
+  </div>
+<form id="review-form" aria-label="Form Ulasan" style="margin-top: 20px;" enctype="multipart/form-data">
+  <input type="text" id="nama" placeholder="Nama Kamu......" name="nama" required aria-required="true" />
+  <p id="warning" class="hidden" style="color: red; font-weight: 600; font-family: 'arial', sans-serif; font-size: 13px; margin-left: 2px; margin-top: -5px;">Max 15 karakter</p>
+  <textarea id="b" name="pesan" placeholder="Komentar......" rows="3" style="resize: none; padding: 10px;" required aria-required="true"></textarea>
+  <button class="smt" type="submit" id="myButton" aria-label="Kirim Ulasan">Posting</button>
+    
+</form>
+  
+  <div id="review-box" class="review-box" aria-label="Ulasan yang Dikirim">
+    
+</section>
+
+<section id="contact" tabindex="-1" aria-label="Contact me">
+<h2 class="mt-[10px] mb-[55px] text-center leading-none text-2xl font-extrabold bg-gradient-to-r from-sky-300 via-sky-400 to-sky-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.8)] animate-pulse flex items-center justify-center gap-3">
+  <i class="fas fa-envelope text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]"></i>
+  Contact Me
+  <i class="fas fa-envelope text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]"></i>
+</h2>
+  <form id="contact-form" aria-label="Contact form">
+    <label for="name">Nama</label>
+    <input type="text" id="name" name="name" required aria-required="true" placeholder="Masukkan nama Anda...."aria-describedby="name-error" />
+    <span id="name-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter your name.</span>
+
+    <label for="email">Phone</label>
+    <input type="number" id="email" name="email" required aria-required="true" placeholder="Nomor telepon...." aria-describedby="email-error" />
+    <span id="email-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter a valid phone number.</span>
+
+    <label for="message">Pesan</label>
+    <textarea id="message" name="message" rows="4" placeholder="Pesan....." required aria-required="true" aria-describedby="message-error"></textarea>
+    <span id="message-error" style="color:#d32f2f; font-size:0.9rem; display:none;">Please enter a message.</span>
+
+    <button type="submit" aria-label="Send message">Kirim</button>
+    <p id="form-status" role="alert" style="margin-top:1rem; font-weight:600; color:#1976d2; display:none;"></p>
+  </form>
+  <div class="social" aria-label="Social media links">
+    <a href="https://tiktok.com/@azkaarrodhi" target="_blank" rel="noopener" aria-label="tiktok" tabindex="0"><i class="fab fa-tiktok"></i></a>
+    <a style="margin: 0 12px;" href="https://github.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="github" tabindex="0"><i class="fab fa-github"></i></a>
+    <a href="https://instagram.com/azkaarrodhi" target="_blank" rel="noopener" aria-label="instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById('loading');
+    loader.classList.remove('hidden');
+  });
+  window.addEventListener("load", () => {
+    const loader = document.getElementById('loading');
+    loader.classList.add('hidden');
+  });
+</script>
+  <script>
+ const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const el = entry.target;
+    if (entry.isIntersecting) {
+      el.classList.remove('fade-out-scale');
+      el.classList.add('fade-in-scale');
+    } else {
+      el.classList.remove('fade-in-scale');
+      el.classList.add('fade-out-scale');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+document.querySelectorAll('.scale').forEach(el => {
+  observer.observe(el);
+});
+</script>
+  
+<footer class="text-white mt-20 border-t border-gray-700">
+  <div class="max-w-5xl mx-auto py-10 px-5 grid md:grid-cols-3 gap-8">
+    
+    <!-- Bagian Bug -->
+    <div class="text-left">
+      <h2 class="text-2xl font-semibold mb-2 text-[#2EB9FF]">Punya Pesan?</h2>
+      <p class="text-gray-300">
+        Silakan sampaikan lewat form <a href="#contact" class="underline text-blue-400 hover:text-blue-300">Contact</a> atau hubungi langsung lewat kontak di bawah.
+      </p>
+    </div>
+
+    <!-- Kontak -->
+    <div class="text-left">
+      <h3 class="text-lg font-semibold mb-2">Kontak</h3>
+      <ul class="text-gray-300 space-y-2">
+        <li>
+          <i class="fas fa-envelope mr-2 text-blue-400"></i>
+          <a href="mailto:azkaarrodhi@yahoo.com" class="hover:text-blue-300">azkaarrodhi@yahoo.com</a>
+        </li>
+        <li>
+  <i class="fab fa-whatsapp mr-2 text-green-400"></i>
+  <a
+     onclick="alert('Not available'); return false;" 
+     class="hover:text-green-300">
+     Not available
+  </a>
+        </li>
+        <li>
+  <i class="fab fa-telegram mr-2 text-sky-400"></i>
+  <a onclick="alert('Not available'); return false;" target="_blank" class="hover:text-sky-300">
+    Not available
+  </a>
+</li>
+
+
+      </ul>
+    </div>
+    
+    <!-- Kosong untuk kolom 3 -->
+    <div><img src="dinosaur-trex.gif" width="75"></div>
+  </div>
+
+  <!-- Hak Cipta: keluar dari max-w agar border full -->
+  <div class="border-t border-gray-700 w-full">
+    <div class="text-sm text-gray-300 text-center py-5" style="margin-bottom: -15px;">
+      &copy; 2024 Azka Arrodhi. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="module.js"></script>
+ <script type="module" src="initializeapp.js"></script>
+<script src="config.js"></script>
+<script src="logic.js"></script>
+
+<!--<script type="module" src="web.js"></script> kenalan-->
+
+<script type="module" src="ModuleApp.js"></script>
+  
+  
+<div id="popup-alert" class="popup hidden">
+  <div class="popup-content">
+    <div id="popup-icon" class="popup-icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </div>
+    <h2 id="popup-title">Berhasil!</h2>
+    <p id="popup-message">Pesan telah dikirim.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+  <script>
+  function closePopup() {
+    document.getElementById("popup-alert").classList.add("hidden");
+  }
+</script>
+ 
+</div>
+ <script src="particle.js"></script>
+ <script type="module">import {getApps,initializeApp} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";import {getFirestore,doc,onSnapshot} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";const firebaseConfig={apiKey:"AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",authDomain:"website-61783.firebaseapp.com",projectId:"website-61783",storageBucket:"website-61783.firebasestorage.app",messagingSenderId:"437361977695",appId:"1:437361977695:web:7e1069062bfaca0f02aeea",measurementId:"G-0X5NV4YK2V"};const app=getApps().length===0?initializeApp(firebaseConfig):getApps()[0];const db=getFirestore(app);const heroImg=document.querySelector(".c");const heroRef=doc(db,"settings","hero");onSnapshot(heroRef,(docSnap)=>{if(docSnap.exists()){const data=docSnap.data();if(data.photoUrl){heroImg.src=data.photoUrl;}}});</script>
+ 
+</body>
+</html>
