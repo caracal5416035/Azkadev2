@@ -102,12 +102,16 @@ msg.innerText = message;
 if (type === "success") {
 popup.classList.remove("error");
 popup.classList.add("success");
-icon.innerHTML = <svg viewBox="0 0 24 24">   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>   </svg>;
+icon.innerHTML = `
+  <svg viewBox="0 0 24 24">
+    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+  </svg>
+`;
 title.innerText = "Berhasil!";
 } else {
 popup.classList.remove("success");
 popup.classList.add("error");
-icon.innerHTML = <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">   <line x1="20" y1="20" x2="80" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>   <line x1="80" y1="20" x2="20" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>   </svg>;
+icon.innerHTML = `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">   <line x1="20" y1="20" x2="80" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>   <line x1="80" y1="20" x2="20" y2="80" stroke="#e53935" stroke-width="12" stroke-linecap="round"/>   </svg>`;
 title.innerText = "Oops...";
 }
 
