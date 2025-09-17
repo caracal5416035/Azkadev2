@@ -188,7 +188,7 @@ button[type="submit"] {
   /* HEADER */
   header {
     position: fixed;
-    background: rgba(36, 49, 59, 0.8);
+    background: rgba(26, 37, 44, 0.7);
     backdrop-filter: blur(15px);
     color: white;
     width: 100%;
