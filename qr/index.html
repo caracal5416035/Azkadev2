@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #1e1e1e;
+      font-family: Arial, sans-serif;
+    }
+
+    .qr-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .qr-container img {
+      width: 300px;
+      height: 300px;
+      border-radius: 15px;
+      transition: transform 0.3s;
+    }
+
+    .qr-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .qr-container p {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="qr-container">
+    <img src="https://azkaarrodhi.vercel.app/qr/.img" alt="QR Code">
+    
+  </div>
+</body>
+</html>
