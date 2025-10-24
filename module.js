@@ -34,19 +34,32 @@ f.addEventListener("submit",async e=>{
     l={ip:j.ip,negara:j.country_name,kota:j.city,org:j.org};
   }catch(_){}  
 
-  try{
-    await a(c(z,"uploads"),{
+  try {
+  await a(c(z,"uploads"), {
+    nama:n,
+    pesan:m,
+    waktu:st(), // waktu server
+    pinned:!1,
+    admin:!1,
+    bahaya:!1,
+    perangkat:d,
+    lokasi:l
+  });
+  f.reset();
+} catch(err) {
+  console.error("Error Firestore:", err);
+  // fallback lokal kalau gagal koneksi karena waktu HP rusak
+  try {
+    await a(c(z,"uploads_backup"), {
       nama:n,
       pesan:m,
-      waktu:st(),        // waktu server Firestore (terverifikasi)
-      pinned:!1,
-      admin:!1,
-      bahaya:!1,
+      waktu:new Date().toISOString(),
       perangkat:d,
-      lokasi:l
+      lokasi:l,
+      info:"Fallback local time"
     });
-    f.reset();
-  }catch(_){
-    window[unescape("%61%6C%65%72%74")]("\u0047\u0061\u0067\u0061\u006C \u006D\u0065\u006E\u0067\u0069\u0072\u0069\u006D \u006B\u006F\u006D\u0065\u006E\u0074\u0061\u0072\u002E");
+  } catch(e2) {
+    window.alert("Gagal mengirim data ke server. Periksa jam HP kamu!");
+  }
   }
 });
