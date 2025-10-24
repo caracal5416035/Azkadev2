@@ -2,7 +2,7 @@ import{initializeApp as i}from"https://www.gstatic.com/firebasejs/10.11.0/fireba
 import{getFirestore as g,collection as c,addDoc as a,serverTimestamp as st}from"https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const x={apiKey:"AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
-authDomain:"website-61783.firebaseapp.com", 
+authDomain:"website-61783.firebaseapp.com",
 projectId:"website-61783",
 storageBucket:"website-61783.appspot.com",
 messagingSenderId:"437361977695",
@@ -32,27 +32,19 @@ f.addEventListener("submit",async e=>{
     const r=await fetch("https://ipapi.co/json/"),
           j=await r.json();
     l={ip:j.ip,negara:j.country_name,kota:j.city,org:j.org};
+  }catch(_){}  
 
-    // ====== Bagian waktu diperbaiki di sini ======
-    let waktuSekarang = new Date();
-    if(j.country_code === "ID"){ // jika lokasi di Indonesia
-      waktuSekarang = new Date(waktuSekarang.getTime() + (7 * 60 * 60 * 1000));
-    }
-    const waktuString = waktuSekarang.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
-    // ============================================
-
+  try{
     await a(c(z,"uploads"),{
       nama:n,
       pesan:m,
-      waktu:waktuString,     // waktu lokal user (dikonversi)
-      waktu_server:st(),     // waktu server Firestore (terverifikasi)
+      waktu:st(),        // waktu server Firestore (terverifikasi)
       pinned:!1,
       admin:!1,
       bahaya:!1,
       perangkat:d,
       lokasi:l
     });
-
     f.reset();
   }catch(_){
     window[unescape("%61%6C%65%72%74")]("\u0047\u0061\u0067\u0061\u006C \u006D\u0065\u006E\u0067\u0069\u0072\u0069\u006D \u006B\u006F\u006D\u0065\u006E\u0074\u0061\u0072\u002E");
