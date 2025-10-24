@@ -2,7 +2,7 @@ import{initializeApp as i}from"https://www.gstatic.com/firebasejs/10.11.0/fireba
 import{getFirestore as g,collection as c,addDoc as a,serverTimestamp as st}from"https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const x={apiKey:"AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
-authDomain:"website-61783.firebaseapp.com",
+authDomain:"website-61783.firebaseapp.com", 
 projectId:"website-61783",
 storageBucket:"website-61783.appspot.com",
 messagingSenderId:"437361977695",
