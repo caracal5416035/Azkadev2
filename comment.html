@@ -1,243 +1,218 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title></title>
-  <meta name="theme-color" content="#1c86ee">
-  <!-- Font & Icons -->
-      <link rel="stylesheet" href="index2.css">
-<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Roboto+Slab:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&family=Merienda:wght@300..900&family=Libre+Baskerville:wght@400&family=Indie+Flower&display=swap" rel="stylesheet">
-    <style>
-  @font-face {
-  font-family: 'calibri';
-  src: url('calibri.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-    </style>
-  <script src="https://azkaarrodhi.vercel.app/menu.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            dark: "transparent",      // latar belakang utama
-            card: "#fefeff",      // latar kartu
-            accent: "#8b5cf6"     // ungu untuk judul & elemen penting
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-  html{overflow-x: hidden;}
-  ::selection {
-  background: brown;
-  color: #fff;
-}
-  </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-</head>
-
-<body class="min-h-screen p-2 bg-dark text-gray-200" translate="no">
-<!--<div class="fixed top-2 right-3 z-50">
-  <button onclick="location.reload()" class="text-gray-500 p-0 transition" style="border-radius: 50%; background: transparent;">
-    <i class="fas fa-rotate-right"></i>
-  </button>
-</div>
--->
-  <div id="data-container"></div>
-
-<!-- Spinner awal -->
-<div id="spinner-main" class="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-  <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-</div>
-
-<!-- Spinner bawah -->
-<div id="spinner-bottom" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
-  <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-</div>
+<!DOCTYPE html>  <html lang="id">  
+<head>  
+  <meta charset="UTF-8">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
+  <title></title>  
+  <meta name="theme-color" content="#1c86ee">  
+  <!-- Font & Icons -->  
+      <link rel="stylesheet" href="index2.css">  
+<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Roboto+Slab:wght@100..900&family=Winky+Sans:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&family=Merienda:wght@300..900&family=Libre+Baskerville:wght@400&family=Indie+Flower&display=swap" rel="stylesheet">  
+    <style>  
+  @font-face {  
+  font-family: 'calibri';  
+  src: url('calibri.ttf') format('truetype');  
+  font-weight: normal;  
+  font-style: normal;  
+}  
+    </style>  
+  <script src="https://azkaarrodhi.vercel.app/menu.js"></script>  
+  <script>  
+    tailwind.config = {  
+      theme: {  
+        extend: {  
+          colors: {  
+            dark: "transparent",      // latar belakang utama  
+            card: "#fefeff",      // latar kartu  
+            accent: "#8b5cf6"     // ungu untuk judul & elemen penting  
+          }  
+        }  
+      }  
+    }  
+  </script>  
+  <style>  
+  html{overflow-x: hidden;}  
+  ::selection {  
+  background: brown;  
+  color: #fff;  
+}  
+  </style>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+</head>  <body class="min-h-screen p-2 bg-dark text-gray-200" translate="no">  
+<!--<div class="fixed top-2 right-3 z-50">  
+  <button onclick="location.reload()" class="text-gray-500 p-0 transition" style="border-radius: 50%; background: transparent;">  
+    <i class="fas fa-rotate-right"></i>  
+  </button>  
+</div>  
+-->  
+  <div id="data-container"></div>  <!-- Spinner awal -->  <div id="spinner-main" class="fixed inset-0 flex items-center justify-center bg-black/40 z-50">  
+  <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>  
+</div>  <!-- Spinner bawah -->  <div id="spinner-bottom" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40">  
+  <div class="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>  
+</div>     <div class="grid gap-6">  <div class="grid gap-3" id="data-container">  
+  <!-- Komentar akan dimasukkan via JavaScript -->  
+</div>  
+     <div class="overlay" id="customOverlay">    
+    <div class="alert-box" id="alertBox">    
+      <h3>Warning!</h3>  <p style="line-height: 1.2; font-weight: 600; font-size: 15px;">Komentar dengan tanda ini mungkin mengandung unsur negatif, mohon berhati hati.</p>    
+      <div class="scale-in" >    
+    <span id="errorMsg" style="display:none;" class="alert-icon scale-in">Incorrect Password!</span>    
+  </div>    
+  <div class="alert-actions">    
+    <button onclick="closePrompt()" id="myButton" style="height: 30px;">Ok</button>      </div>    
+  </div>  <script src="https://azkaarrodhi.vercel.app/data-aos.js"></script>  <script type="module">  
+import {   
+  initializeApp   
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";  
+import {   
+  getFirestore, collection, query, orderBy, limit, startAfter, onSnapshot, getDocs   
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";  
   
-   <div class="grid gap-6">
-      
-<div class="grid gap-3" id="data-container">
-  <!-- Komentar akan dimasukkan via JavaScript -->
-</div>
-     <div class="overlay" id="customOverlay">  
-    <div class="alert-box" id="alertBox">  
-      <h3>Warning!</h3>  <p style="line-height: 1.2; font-weight: 600; font-size: 15px;">Komentar dengan tanda ini mungkin mengandung unsur negatif, mohon berhati hati.</p>  
-      <div class="scale-in" >  
-    <span id="errorMsg" style="display:none;" class="alert-icon scale-in">Incorrect Password!</span>  
-  </div>  
-  <div class="alert-actions">  
-    <button onclick="closePrompt()" id="myButton" style="height: 30px;">Ok</button>  
-
-  </div>  
-  </div>
-
-<script src="https://azkaarrodhi.vercel.app/data-aos.js"></script>
-<script type="module">
-
-  import { 
-  initializeApp 
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { 
-  getFirestore, collection, query, orderBy, limit, startAfter, onSnapshot, getDocs 
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-// Konfigurasi Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",
-  authDomain: "website-61783.firebaseapp.com",
-  projectId: "website-61783",
-  storageBucket: "website-61783.firebasestorage.app",
-  messagingSenderId: "437361977695",
-  appId: "1:437361977695:web:7e1069062bfaca0f02aeea",
-  measurementId: "G-0X5NV4YK2V"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const container = document.getElementById("data-container");
-const pageSize = 10;
-let lastDoc = null;
-let isLoading = false;
-let noMoreData = false;
-let firstLoadDone = false;
-
-// Set untuk menyimpan ID dokumen yang sudah ditampilkan
-const displayedIds = new Set();
-
-// Escape HTML untuk mencegah XSS
-function escapeHTML(str) {
-  if (!str) return "";
-  return str.replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-}
-
-// Format waktu Firestore → WIB
-function formatWaktu(timestamp) {
-  if (!timestamp) return "-";
-  try {
-    const date = timestamp.toDate();
-    return date.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
-  } catch {
-    return "-";
-  }
-}
-
-// Hapus card "Belum Ada komentar" jika ada
-function removeNoDataCard() {
-  const noDataCard = container.querySelector(".no-data-card");
-  if (noDataCard) noDataCard.remove();
-}
-
-// Render komentar
-function renderKomentar(item, docId, prepend = false) {
-  if (displayedIds.has(docId)) return;
-  displayedIds.add(docId);
-
-  // Hapus card "Belum Ada komentar" jika ada
-  removeNoDataCard();
-
-  const borderColor = item.bahaya ? "#ef4444" : "#1c86ee"; 
-  const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee"; 
-
-  const html = `
-    <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200" 
-         style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">
-      <div class="flex items-center gap-2 mb-2 text-accent font-semibold">
-        <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>
-        ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}
-        ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}
-      </div>
-      <p style="color:#fff; font-family:'calibri'; margin-left: 4px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>
-      <div class="mt-3 text-xs text-gray-400 text-right">${formatWaktu(item.waktu)}</div>
-    </div>
-  `;
-  if (prepend) container.insertAdjacentHTML("afterbegin", html);
-  else container.insertAdjacentHTML("beforeend", html);
-}
-
-// Load komentar lama (pagination)
-async function loadKomentar() {
-  if (isLoading || noMoreData) return;
-  isLoading = true;
-  document.getElementById("spinner-main").classList.remove("hidden");
-
-  try {
-    let q;
-    if (lastDoc) {
-      q = query(
-        collection(db, "uploads"),
-        orderBy("waktu", "desc"),
-        startAfter(lastDoc),
-        limit(pageSize)
-      );
-    } else {
-      q = query(
-        collection(db, "uploads"),
-        orderBy("waktu", "desc"),
-        limit(pageSize)
-      );
-    }
-
-    const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-      if (!firstLoadDone && displayedIds.size === 0) {
-        container.innerHTML = `
-          <div class="text-center p-6 bg-gray-800 rounded-xl no-data-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" 
-                 alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
-            <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>
-            <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>
-          </div>`;
-      } else {
-        noMoreData = true;
-        document.getElementById("spinner-bottom").innerHTML = 
-          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;
-      }
-      return;
-    }
-
-    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));
-    lastDoc = snapshot.docs[snapshot.docs.length - 1];
-    firstLoadDone = true;
-
-  } catch (err) {
-    console.error("Gagal mengambil data:", err);
-  } finally {
-    isLoading = false;
-    document.getElementById("spinner-main").classList.add("hidden");
-    document.getElementById("spinner-bottom").classList.add("hidden");
-  }
-}
-
-// Real-time listener untuk komentar baru
-const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));
-onSnapshot(qRealtime, (snapshot) => {
-  snapshot.docChanges().forEach(change => {
-    if (change.type === "added") {
-      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true
-    }
-  });
-});
-
-// Load pertama komentar lama
-loadKomentar();
-
-// Infinite scroll
-window.addEventListener("scroll", () => {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-    loadKomentar();
-  }
-});
-</script>
-</body>
-</html>
+// Konfigurasi Firebase  
+const firebaseConfig = {  
+  apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",  
+  authDomain: "website-61783.firebaseapp.com",  
+  projectId: "website-61783",  
+  storageBucket: "website-61783.firebasestorage.app",  
+  messagingSenderId: "437361977695",  
+  appId: "1:437361977695:web:7e1069062bfaca0f02aeea",  
+  measurementId: "G-0X5NV4YK2V"  
+};  
+  
+const app = initializeApp(firebaseConfig);  
+const db = getFirestore(app);  
+  
+const container = document.getElementById("data-container");  
+const pageSize = 10;  
+let lastDoc = null;  
+let isLoading = false;  
+let noMoreData = false;  
+let firstLoadDone = false;  
+  
+// Set untuk menyimpan ID dokumen yang sudah ditampilkan  
+const displayedIds = new Set();  
+  
+// Escape untuk mencegah XSS  
+function escapeHTML(str) {  
+  if (!str) return "";  
+  return str  
+    .replace(/&/g, "&amp;")  
+    .replace(/</g, "&lt;")  
+    .replace(/>/g, "&gt;")  
+    .replace(/"/g, "&quot;")  
+    .replace(/'/g, "&#039;");  
+}  
+  
+// Format waktu Firestore → WIB  
+function formatWaktu(timestamp) {  
+  if (!timestamp) return "-";  
+  try {  
+    const date = timestamp.toDate();  
+    return date.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });  
+  } catch {  
+    return "-";  
+  }  
+}  
+  
+// Render komentar  
+function renderKomentar(item, docId, prepend = false) {  
+  if (displayedIds.has(docId)) return; // skip jika sudah ditampilkan  
+  displayedIds.add(docId);  
+  
+  const borderColor = item.bahaya ? "#ef4444" : "#1c86ee";   
+  const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee";   
+  
+  const html = `  
+    <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200"   
+         style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">  
+      <div class="flex items-center gap-2 mb-2 text-accent font-semibold">  
+        <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>  
+        ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}  
+        ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}  
+      </div>  
+      <p style="color:#fff; font-family:'calibri'; margin-left: 4px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>  
+      <div class="mt-3 text-xs text-gray-400 text-right">${formatWaktu(item.waktu)}</div>  
+    </div>  
+  `;  
+  if (prepend) {  
+    container.insertAdjacentHTML("afterbegin", html);  
+  } else {  
+    container.insertAdjacentHTML("beforeend", html);  
+  }  
+}  
+  
+// Load komentar lama (pagination)  
+async function loadKomentar() {  
+  if (isLoading || noMoreData) return;  
+  isLoading = true;  
+  document.getElementById("spinner-main").classList.remove("hidden");  
+  
+  try {  
+    let q;  
+    if (lastDoc) {  
+      q = query(  
+        collection(db, "uploads"),  
+        orderBy("waktu", "desc"),  
+        startAfter(lastDoc),  
+        limit(pageSize)  
+      );  
+    } else {  
+      q = query(  
+        collection(db, "uploads"),  
+        orderBy("waktu", "desc"),  
+        limit(pageSize)  
+      );  
+    }  
+  
+    const snapshot = await getDocs(q);  
+  
+    if (snapshot.empty) {  
+       if (!firstLoadDone && displayedIds.size === 0) {  
+        container.innerHTML = `  
+          <div class="text-center p-6 bg-gray-800 rounded-xl">  
+            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"   
+                 alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />  
+            <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>  
+            <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>  
+          </div>`;  
+      } else {  
+        noMoreData = true;  
+        document.getElementById("spinner-bottom").innerHTML =   
+          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;  
+      }  
+      return;  
+    }  
+  
+    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));  
+    lastDoc = snapshot.docs[snapshot.docs.length - 1];  
+    firstLoadDone = true;  
+  
+  } catch (err) {  
+    console.error("Gagal mengambil data:", err);  
+  } finally {  
+    isLoading = false;  
+    document.getElementById("spinner-main").classList.add("hidden");  
+    document.getElementById("spinner-bottom").classList.add("hidden");  
+  }  
+}  
+  
+// Real-time listener untuk komentar baru  
+const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));  
+onSnapshot(qRealtime, (snapshot) => {  
+  snapshot.docChanges().forEach(change => {  
+    if (change.type === "added") {  
+      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true  
+    }  
+  });  
+});  
+  
+// Load pertama komentar lama  
+loadKomentar();  
+  
+// Infinite scroll untuk load batch berikutnya  
+window.addEventListener("scroll", () => {  
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {  
+    loadKomentar();  
+  }  
+});  
+</script>  </body>  
+</html>  Jika ada komentar hilangkan card belum ada komentar
