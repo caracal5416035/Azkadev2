@@ -45,6 +45,7 @@ f.addEventListener("submit",async e=>{
     perangkat:d,
     lokasi:l
   });
+  document.getElementById("myFrame").contentWindow.location.reload();
   f.reset();
 } catch(err) {
   console.error("Error Firestore:", err);
