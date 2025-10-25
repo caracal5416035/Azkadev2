@@ -78,7 +78,8 @@
 
 <script src="https://azkaarrodhi.vercel.app/data-aos.js"></script>
 <script type="module">
-import { 
+
+  import { 
   initializeApp 
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import { 
@@ -109,15 +110,14 @@ let firstLoadDone = false;
 // Set untuk menyimpan ID dokumen yang sudah ditampilkan
 const displayedIds = new Set();
 
-// Escape untuk mencegah XSS
+// Escape HTML untuk mencegah XSS
 function escapeHTML(str) {
   if (!str) return "";
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 }
 
 // Format waktu Firestore → WIB
@@ -131,10 +131,19 @@ function formatWaktu(timestamp) {
   }
 }
 
+// Hapus card "Belum Ada komentar" jika ada
+function removeNoDataCard() {
+  const noDataCard = container.querySelector(".no-data-card");
+  if (noDataCard) noDataCard.remove();
+}
+
 // Render komentar
 function renderKomentar(item, docId, prepend = false) {
-  if (displayedIds.has(docId)) return; // skip jika sudah ditampilkan
+  if (displayedIds.has(docId)) return;
   displayedIds.add(docId);
+
+  // Hapus card "Belum Ada komentar" jika ada
+  removeNoDataCard();
 
   const borderColor = item.bahaya ? "#ef4444" : "#1c86ee"; 
   const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee"; 
@@ -151,11 +160,8 @@ function renderKomentar(item, docId, prepend = false) {
       <div class="mt-3 text-xs text-gray-400 text-right">${formatWaktu(item.waktu)}</div>
     </div>
   `;
-  if (prepend) {
-    container.insertAdjacentHTML("afterbegin", html);
-  } else {
-    container.insertAdjacentHTML("beforeend", html);
-  }
+  if (prepend) container.insertAdjacentHTML("afterbegin", html);
+  else container.insertAdjacentHTML("beforeend", html);
 }
 
 // Load komentar lama (pagination)
@@ -186,7 +192,7 @@ async function loadKomentar() {
     if (snapshot.empty) {
       if (!firstLoadDone && displayedIds.size === 0) {
         container.innerHTML = `
-          <div class="text-center p-6 bg-gray-800 rounded-xl">
+          <div class="text-center p-6 bg-gray-800 rounded-xl no-data-card">
             <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" 
                  alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
             <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>
@@ -226,7 +232,7 @@ onSnapshot(qRealtime, (snapshot) => {
 // Load pertama komentar lama
 loadKomentar();
 
-// Infinite scroll untuk load batch berikutnya
+// Infinite scroll
 window.addEventListener("scroll", () => {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
     loadKomentar();
