@@ -140,8 +140,7 @@ function renderKomentar(item, docId, prepend = false) {
   }  
 }  
   
-// Load komentar lama (pagination)  
-async function loadKomentar() {  
+    // Load komentar lama (pagination)  
 async function loadKomentar() {
   if (isLoading || noMoreData) return;
   isLoading = true;
@@ -165,7 +164,7 @@ async function loadKomentar() {
     }
 
     const snapshot = await getDocs(q);
-    const container = document.getElementById("container"); // pastikan ini ID container
+    const container = document.getElementById("container");
 
     if (!snapshot.empty) {
       // Hapus card "Belum Ada Komentar" jika ada
@@ -204,41 +203,32 @@ async function loadKomentar() {
     document.getElementById("spinner-bottom").classList.add("hidden");
   }
 }
-      return;  
-    }  
 
-    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));  
-    lastDoc = snapshot.docs[snapshot.docs.length - 1];  
-    firstLoadDone = true;  
-
-  } catch (err) {  
-    console.error("Gagal mengambil data:", err);  
-  } finally {  
-    isLoading = false;  
-    document.getElementById("spinner-main").classList.add("hidden");  
-    document.getElementById("spinner-bottom").classList.add("hidden");  
-  }  
-}
-      
-  
 // Real-time listener untuk komentar baru  
-const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));  
-onSnapshot(qRealtime, (snapshot) => {  
-  snapshot.docChanges().forEach(change => {  
-    if (change.type === "added") {  
-      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true  
-    }  
-  });  
-});  
-  
+const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));
+onSnapshot(qRealtime, (snapshot) => {
+  const container = document.getElementById("container");
+  // Hapus card "Belum Ada Komentar" jika ada
+  const noDataCard = container.querySelector(".no-data-card");
+  if (noDataCard) {
+    noDataCard.remove();
+  }
+
+  snapshot.docChanges().forEach(change => {
+    if (change.type === "added") {
+      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true
+    }
+  });
+});
+
 // Load pertama komentar lama  
-loadKomentar();  
-  
+loadKomentar();
+
 // Infinite scroll untuk load batch berikutnya  
-window.addEventListener("scroll", () => {  
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {  
-    loadKomentar();  
-  }  
-});  
+window.addEventListener("scroll", () => {
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+    loadKomentar();
+  }
+});
 </script>  </body>  
-</html>  Jika ada komentar hilangkan card belum ada komentar
+</html>  
