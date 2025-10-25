@@ -60,161 +60,150 @@
   <div class="alert-actions">    
     <button onclick="closePrompt()" id="myButton" style="height: 30px;">Ok</button>      </div>    
   </div>  <script src="https://azkaarrodhi.vercel.app/data-aos.js"></script> 
-       <script type="module">  
-import {   
-  initializeApp   
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";  
-import {   
-  getFirestore, collection, query, orderBy, limit, startAfter, onSnapshot, getDocs   
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";  
+
+<script type="module">  
+  import {   
+    initializeApp   
+  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";  
+  import {   
+    getFirestore, collection, query, orderBy, limit, startAfter, getDocs   
+  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";  
   
-// Konfigurasi Firebase  
-const firebaseConfig = {  
-  apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",  
-  authDomain: "website-61783.firebaseapp.com",  
-  projectId: "website-61783",  
-  storageBucket: "website-61783.firebasestorage.app",  
-  messagingSenderId: "437361977695",  
-  appId: "1:437361977695:web:7e1069062bfaca0f02aeea",  
-  measurementId: "G-0X5NV4YK2V"  
-};  
+  // Konfigurasi Firebase  
+  const firebaseConfig = {  
+    apiKey: "AIzaSyClBErlyRv20HwMf_zQC7REsZEknaFjs_8",  
+    authDomain: "website-61783.firebaseapp.com",  
+    projectId: "website-61783",  
+    storageBucket: "website-61783.firebasestorage.app",  
+    messagingSenderId: "437361977695",  
+    appId: "1:437361977695:web:7e1069062bfaca0f02aeea",  
+    measurementId: "G-0X5NV4YK2V"  
+  };  
   
-const app = initializeApp(firebaseConfig);  
-const db = getFirestore(app);  
+  // Inisialisasi App & Firestore  
+  const app = initializeApp(firebaseConfig);  
+  const db = getFirestore(app);  
   
-const container = document.getElementById("data-container");  
-const pageSize = 10;  
-let lastDoc = null;  
-let isLoading = false;  
-let noMoreData = false;  
-let firstLoadDone = false;  
+  const container = document.getElementById("data-container");  
+  const pageSize = 10;  
+  let lastDoc = null;  
+  let isLoading = false;  
+  let noMoreData = false;  
+  let firstLoadDone = false;  
   
-// Set untuk menyimpan ID dokumen yang sudah ditampilkan  
-const displayedIds = new Set();  
-  
-// Escape untuk mencegah XSS  
-function escapeHTML(str) {  
-  if (!str) return "";  
-  return str  
-    .replace(/&/g, "&amp;")  
-    .replace(/</g, "&lt;")  
-    .replace(/>/g, "&gt;")  
-    .replace(/"/g, "&quot;")  
-    .replace(/'/g, "&#039;");  
-}  
-  
-// Format waktu Firestore → WIB  
-function formatWaktu(timestamp) {  
-  if (!timestamp) return "-";  
-  try {  
-    const date = timestamp.toDate();  
-    return date.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });  
-  } catch {  
-    return "-";  
+  // Escape untuk mencegah XSS  
+  function escapeHTML(str) {  
+    if (!str) return "";  
+    return str  
+      .replace(/&/g, "&amp;")  
+      .replace(/</g, "&lt;")  
+      .replace(/>/g, "&gt;")  
+      .replace(/"/g, "&quot;")  
+      .replace(/'/g, "&#039;");  
   }  
-}  
   
-// Render komentar  
-function renderKomentar(item, docId, prepend = false) {  
-  if (displayedIds.has(docId)) return; // skip jika sudah ditampilkan  
-  displayedIds.add(docId);  
-  
-  const borderColor = item.bahaya ? "#ef4444" : "#1c86ee";   
-  const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee";   
-  
-  const html = `  
-    <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200"   
-         style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">  
-      <div class="flex items-center gap-2 mb-2 text-accent font-semibold">  
-        <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>  
-        ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}  
-        ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}  
-      </div>  
-      <p style="color:#fff; font-family:'calibri'; margin-left: 4px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>  
-      <div class="mt-3 text-xs text-gray-400 text-right">${formatWaktu(item.waktu)}</div>  
-    </div>  
-  `;  
-  if (prepend) {  
-    container.insertAdjacentHTML("afterbegin", html);  
-  } else {  
-    container.insertAdjacentHTML("beforeend", html);  
+  // Format waktu Firestore → WIB  
+  function formatWaktu(timestamp) {  
+    if (!timestamp) return "-";  
+    try {  
+      const date = timestamp.toDate(); // Firestore Timestamp → JS Date  
+      return date.toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });  
+    } catch {  
+      return "-";  
+    }  
   }  
-}  
   
-// Load komentar lama (pagination)  
-async function loadKomentar() {  
-  if (isLoading || noMoreData) return;  
-  isLoading = true;  
-  document.getElementById("spinner-main").classList.remove("hidden");  
+  // Fungsi ambil komentar dari Firestore  
+  async function loadKomentar(initial = false) {  
+    if (isLoading || noMoreData) return;  
+    isLoading = true;  
   
-  try {  
-    let q;  
-    if (lastDoc) {  
-      q = query(  
-        collection(db, "uploads"),  
-        orderBy("waktu", "desc"),  
-        startAfter(lastDoc),  
-        limit(pageSize)  
-      );  
+    if (initial) {  
+      document.getElementById("spinner-main").classList.remove("hidden");  
     } else {  
-      q = query(  
-        collection(db, "uploads"),  
-        orderBy("waktu", "desc"),  
-        limit(pageSize)  
-      );  
+      document.getElementById("spinner-bottom").classList.remove("hidden");  
     }  
   
-    const snapshot = await getDocs(q);  
-  
-    if (snapshot.empty) {  
-      if (!firstLoadDone) {  
-        container.innerHTML = `  
-          <div class="text-center p-6 bg-gray-800 rounded-xl">  
-            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"   
-                 alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />  
-            <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>  
-            <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>  
-          </div>`;  
+    try {  
+      let q;  
+      if (lastDoc) {  
+        q = query(  
+          collection(db, "uploads"),  
+          orderBy("waktu", "desc"),  
+          startAfter(lastDoc),  
+          limit(pageSize)  
+        );  
       } else {  
-        noMoreData = true;  
-        document.getElementById("spinner-bottom").innerHTML =   
-          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;  
+        q = query(  
+          collection(db, "uploads"),  
+          orderBy("waktu", "desc"),  
+          limit(pageSize)  
+        );  
       }  
-      return;  
+  
+      const snapshot = await getDocs(q);  
+  
+      // Jika belum ada data sama sekali  
+      if (snapshot.empty) {  
+        if (!firstLoadDone) {  
+          container.innerHTML = `  
+            <div class="text-center p-6 bg-gray-800 rounded-xl">  
+              <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"   
+                   alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />  
+              <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>  
+              <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>  
+            </div>`;  
+        } else {  
+          noMoreData = true;  
+          document.getElementById("spinner-bottom").innerHTML =   
+            `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;  
+        }  
+        return;  
+      }  
+  
+      // Tampilkan tiap komentar  
+      snapshot.forEach(doc => {  
+        const item = doc.data();  
+        const borderColor = item.bahaya ? "#ef4444" : "#1c86ee";   
+        const nameColor   = item.bahaya ? "#ef4444" : "#1c86ee";   
+  
+        container.insertAdjacentHTML("beforeend", `  
+          <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200"   
+               style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">  
+            <div class="flex items-center gap-2 mb-2 text-accent font-semibold">  
+              <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>  
+              ${item.admin ? `<img src="https://azkaarrodhi.vercel.app/foto/cb.png" width="15" style="margin-left: -3px;">` : ""}  
+              ${item.bahaya ? `<i class="fas fa-exclamation-circle text-red-500 cursor-pointer" title="Pesan berbahaya" style="font-size: 13.5px; margin-left: -3px;" onclick="openPrompt()"></i>` : ""}  
+            </div>  
+            <p style="color:#fff; font-family:'calibri'; margin-left: 4px; font-size:18px; line-height:1.2;">${escapeHTML(item.pesan)}</p>  
+            <div class="mt-3 text-xs text-gray-400 text-right">${formatWaktu(item.waktu)}</div>  
+          </div>  
+        `);  
+      });  
+  
+      lastDoc = snapshot.docs[snapshot.docs.length - 1];  
+      firstLoadDone = true;  
+  
+    } catch (err) {  
+      console.error("Gagal mengambil data:", err);  
+    } finally {  
+      isLoading = false;  
+      document.getElementById("spinner-main").classList.add("hidden");  
+      document.getElementById("spinner-bottom").classList.add("hidden");  
     }  
-  
-    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));  
-    lastDoc = snapshot.docs[snapshot.docs.length - 1];  
-    firstLoadDone = true;  
-  
-  } catch (err) {  
-    console.error("Gagal mengambil data:", err);  
-  } finally {  
-    isLoading = false;  
-    document.getElementById("spinner-main").classList.add("hidden");  
-    document.getElementById("spinner-bottom").classList.add("hidden");  
   }  
-}  
   
-// Real-time listener untuk komentar baru  
-const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));  
-onSnapshot(qRealtime, (snapshot) => {  
-  snapshot.docChanges().forEach(change => {  
-    if (change.type === "added") {  
-      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true  
+  // Load pertama  
+  loadKomentar(true);  
+  
+  // Infinite scroll  
+  window.addEventListener("scroll", () => {  
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {  
+      loadKomentar();  
     }  
   });  
-});  
-  
-// Load pertama komentar lama  
-loadKomentar();  
-  
-// Infinite scroll untuk load batch berikutnya  
-window.addEventListener("scroll", () => {  
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {  
-    loadKomentar();  
-  }  
-});  
-</script>
+   </script> 
+
+       
      </body>  
 </html>  
