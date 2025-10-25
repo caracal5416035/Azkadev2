@@ -184,7 +184,7 @@ async function loadKomentar() {
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-      if (!firstLoadDone) {
+      if (!firstLoadDone && displayedIds.size === 0) {
         container.innerHTML = `
           <div class="text-center p-6 bg-gray-800 rounded-xl">
             <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" 
