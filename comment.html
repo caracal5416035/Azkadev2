@@ -140,95 +140,79 @@ function renderKomentar(item, docId, prepend = false) {
   }  
 }  
   
-    // Load komentar lama (pagination)  
-async function loadKomentar() {
-  if (isLoading || noMoreData) return;
-  isLoading = true;
-  document.getElementById("spinner-main").classList.remove("hidden");
-
-  try {
-    let q;
-    if (lastDoc) {
-      q = query(
-        collection(db, "uploads"),
-        orderBy("waktu", "desc"),
-        startAfter(lastDoc),
-        limit(pageSize)
-      );
-    } else {
-      q = query(
-        collection(db, "uploads"),
-        orderBy("waktu", "desc"),
-        limit(pageSize)
-      );
-    }
-
-    const snapshot = await getDocs(q);
-    const container = document.getElementById("container");
-
-    if (!snapshot.empty) {
-      // Hapus card "Belum Ada Komentar" jika ada
-      const noDataCard = container.querySelector(".no-data-card");
-      if (noDataCard) {
-        noDataCard.remove();
-      }
-
-      // Render komentar baru
-      snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));
-      lastDoc = snapshot.docs[snapshot.docs.length - 1];
-      firstLoadDone = true;
-
-    } else {
-      // Jika kosong dan pertama load
-      if (!firstLoadDone && displayedIds.size === 0) {
-        container.innerHTML = `
-          <div class="no-data-card text-center p-6 bg-gray-800 rounded-xl">
+// Load komentar lama (pagination)  
+async function loadKomentar() {  
+  if (isLoading || noMoreData) return;  
+  isLoading = true;  
+  document.getElementById("spinner-main").classList.remove("hidden");  
+  
+  try {  
+    let q;  
+    if (lastDoc) {  
+      q = query(  
+        collection(db, "uploads"),  
+        orderBy("waktu", "desc"),  
+        startAfter(lastDoc),  
+        limit(pageSize)  
+      );  
+    } else {  
+      q = query(  
+        collection(db, "uploads"),  
+        orderBy("waktu", "desc"),  
+        limit(pageSize)  
+      );  
+    }  
+  
+    const snapshot = await getDocs(q);  
+  
+    if (snapshot.empty) {  
+      if (!firstLoadDone) {  
+        container.innerHTML = `  
+          <div class="text-center p-6 bg-gray-800 rounded-xl">  
             <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"   
-                 alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />
-            <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>
-            <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>
-          </div>`;
-      } else {
-        noMoreData = true;
+                 alt="No Data" class="w-20 mx-auto mb-4 opacity-100" />  
+            <h1 class="text-xl font-semibold text-gray-100 mb-2 text-center">Belum Ada komentar</h1>  
+            <p class="text-gray-400">Saat ini belum ada komentar yang diunggah.</p>  
+          </div>`;  
+      } else {  
+        noMoreData = true;  
         document.getElementById("spinner-bottom").innerHTML =   
-          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;
-      }
-    }
-
-  } catch (err) {
-    console.error("Gagal mengambil data:", err);
-  } finally {
-    isLoading = false;
-    document.getElementById("spinner-main").classList.add("hidden");
-    document.getElementById("spinner-bottom").classList.add("hidden");
-  }
-}
-
+          `<p class="text-gray-400 text-sm">✅ Semua komentar sudah ditampilkan</p>`;  
+      }  
+      return;  
+    }  
+  
+    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));  
+    lastDoc = snapshot.docs[snapshot.docs.length - 1];  
+    firstLoadDone = false;  
+  
+  } catch (err) {  
+    console.error("Gagal mengambil data:", err);  
+  } finally {  
+    isLoading = false;  
+    document.getElementById("spinner-main").classList.add("hidden");  
+    document.getElementById("spinner-bottom").classList.add("hidden");  
+  }  
+}  
+  
 // Real-time listener untuk komentar baru  
-const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));
-onSnapshot(qRealtime, (snapshot) => {
-  const container = document.getElementById("container");
-  // Hapus card "Belum Ada Komentar" jika ada
-  const noDataCard = container.querySelector(".no-data-card");
-  if (noDataCard) {
-    noDataCard.remove();
-  }
-
-  snapshot.docChanges().forEach(change => {
-    if (change.type === "added") {
-      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true
-    }
-  });
-});
-
+const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));  
+onSnapshot(qRealtime, (snapshot) => {  
+  snapshot.docChanges().forEach(change => {  
+    if (change.type === "added") {  
+      renderKomentar(change.doc.data(), change.doc.id, true); // prepend = true  
+    }  
+  });  
+});  
+  
 // Load pertama komentar lama  
-loadKomentar();
-
+loadKomentar();  
+  
 // Infinite scroll untuk load batch berikutnya  
-window.addEventListener("scroll", () => {
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-    loadKomentar();
-  }
-});
+window.addEventListener("scroll", () => {  
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {  
+    loadKomentar();  
+  }  
+});  
 </script>  </body>  
 </html>  
