@@ -60,7 +60,7 @@
   <div class="alert-actions">    
     <button onclick="closePrompt()" id="myButton" style="height: 30px;">Ok</button>      </div>    
   </div>  <script src="https://azkaarrodhi.vercel.app/data-aos.js"></script>  <script type="module">  
-    import {
+import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
 import {
@@ -94,11 +94,9 @@ let lastDoc = null;
 let isLoading = false;
 let noMoreData = false;
 let firstLoadDone = false;
-
-// Set untuk menyimpan ID dokumen yang sudah ditampilkan
 const displayedIds = new Set();
 
-// Escape untuk mencegah XSS
+// Escape HTML
 function escapeHTML(str) {
   if (!str) return "";
   return str
@@ -109,7 +107,7 @@ function escapeHTML(str) {
     .replace(/'/g, "&#039;");
 }
 
-// Format waktu Firestore → WIB
+// Format waktu Firestore ke WIB
 function formatWaktu(timestamp) {
   if (!timestamp) return "-";
   try {
@@ -129,7 +127,7 @@ function renderKomentar(item, docId, prepend = false) {
   const nameColor = item.bahaya ? "#ef4444" : "#1c86ee";
 
   const html = `
-    <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-200"
+    <div class="bg-card pt-2 pb-2 pl-3 pr-3 rounded-md relative mt-4 transition-transform duration-300 opacity-0 translate-y-2"
          style="border-left: 4px solid ${borderColor}; background-color:#2C3842; box-shadow:0 1px 15px rgba(0,0,0,0.2)">
       <div class="flex items-center gap-2 mb-2 text-accent font-semibold">
         <span style="color:${nameColor}; font-size: 20px;">${escapeHTML(item.nama?.slice(0,15) || "-")}</span>
@@ -147,7 +145,16 @@ function renderKomentar(item, docId, prepend = false) {
     container.insertAdjacentHTML("beforeend", html);
   }
 
-  // Jika ada komentar, hapus card "Belum Ada Komentar"
+  // Animasi muncul lembut
+  const el = container.firstElementChild;
+  if (el) {
+    requestAnimationFrame(() => {
+      el.classList.remove("opacity-0", "translate-y-2");
+      el.classList.add("opacity-100", "translate-y-0");
+    });
+  }
+
+  // Hapus card kosong
   const emptyCard = document.getElementById("empty-card");
   if (emptyCard) emptyCard.remove();
 }
@@ -194,7 +201,9 @@ async function loadKomentar() {
       return;
     }
 
-    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id));
+    // 🔥 Urutkan secara descending benar-benar terjaga
+    snapshot.forEach(doc => renderKomentar(doc.data(), doc.id, false));
+
     lastDoc = snapshot.docs[snapshot.docs.length - 1];
     firstLoadDone = true;
 
@@ -207,7 +216,7 @@ async function loadKomentar() {
   }
 }
 
-// Realtime listener untuk komentar baru
+// Realtime listener: komentar baru tetap muncul di atas
 const qRealtime = query(collection(db, "uploads"), orderBy("waktu", "desc"), limit(5));
 onSnapshot(qRealtime, (snapshot) => {
   snapshot.docChanges().forEach(change => {
@@ -217,10 +226,10 @@ onSnapshot(qRealtime, (snapshot) => {
   });
 });
 
-// Load pertama komentar lama
+// Load awal
 loadKomentar();
 
-// Infinite scroll untuk batch berikutnya
+// Infinite scroll
 window.addEventListener("scroll", () => {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
     loadKomentar();
